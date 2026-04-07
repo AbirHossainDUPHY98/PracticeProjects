@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>model – Projectile Motion Equation Modeled with Atmospheric Density Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-4164442f402d20f3264a742c772b0155.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Projectile Motion Equation Modeled with Atmospheric Density Data</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Index</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./model.html" aria-current="page"> 
+<span class="menu-text">The Model</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./discussion.html"> 
+<span class="menu-text">Discussion</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-ideal-projectile-model" id="toc-the-ideal-projectile-model" class="nav-link active" data-scroll-target="#the-ideal-projectile-model">The Ideal Projectile Model</a>
+  <ul class="collapse">
+  <li><a href="#physics-background" id="toc-physics-background" class="nav-link" data-scroll-target="#physics-background">Physics Background</a></li>
+  <li><a href="#equations-of-motion" id="toc-equations-of-motion" class="nav-link" data-scroll-target="#equations-of-motion">Equations of Motion</a></li>
+  <li><a href="#initial-conditions" id="toc-initial-conditions" class="nav-link" data-scroll-target="#initial-conditions">Initial Conditions</a></li>
+  <li><a href="#numerical-solution-rk4" id="toc-numerical-solution-rk4" class="nav-link" data-scroll-target="#numerical-solution-rk4">Numerical Solution: RK4</a></li>
+  <li><a href="#ideal-trajectory" id="toc-ideal-trajectory" class="nav-link" data-scroll-target="#ideal-trajectory">Ideal Trajectory</a></li>
+  <li><a href="#parametric-cases" id="toc-parametric-cases" class="nav-link" data-scroll-target="#parametric-cases">Parametric Cases</a></li>
+  </ul></li>
+  <li><a href="#data-sourcing-and-preparation" id="toc-data-sourcing-and-preparation" class="nav-link" data-scroll-target="#data-sourcing-and-preparation">Data Sourcing and Preparation</a>
+  <ul class="collapse">
+  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source">Source</a></li>
+  <li><a href="#cleaning" id="toc-cleaning" class="nav-link" data-scroll-target="#cleaning">Cleaning</a></li>
+  </ul></li>
+  <li><a href="#the-atmospheric-density-model" id="toc-the-atmospheric-density-model" class="nav-link" data-scroll-target="#the-atmospheric-density-model">The Atmospheric Density Model</a>
+  <ul class="collapse">
+  <li><a href="#observed-shape-of-the-data" id="toc-observed-shape-of-the-data" class="nav-link" data-scroll-target="#observed-shape-of-the-data">Observed Shape of the Data</a></li>
+  <li><a href="#mathematical-ground" id="toc-mathematical-ground" class="nav-link" data-scroll-target="#mathematical-ground">Mathematical Ground</a></li>
+  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application">Application</a></li>
+  </ul></li>
+  <li><a href="#enhanced-projectile-simulation" id="toc-enhanced-projectile-simulation" class="nav-link" data-scroll-target="#enhanced-projectile-simulation">Enhanced Projectile Simulation</a>
+  <ul class="collapse">
+  <li><a href="#result" id="toc-result" class="nav-link" data-scroll-target="#result">Result</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="the-ideal-projectile-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-ideal-projectile-model">The Ideal Projectile Model</h2>
+<section id="physics-background" class="level3">
+<h3 class="anchored" data-anchor-id="physics-background">Physics Background</h3>
+<p>In the classical physics, a projectile moves under gravity alone with no air resistance or frictional intervention. To set up the enhanced model, equations of motion including drag from the start is reviewed below, and then the ideal case is achieved by setting <span class="math inline">\(F_d = 0\)</span>.</p>
+</section>
+<section id="equations-of-motion" class="level3">
+<h3 class="anchored" data-anchor-id="equations-of-motion">Equations of Motion</h3>
+<p>Let the projectile have mass <span class="math inline">\(m\)</span>, horizontal velocity component <span class="math inline">\(V_x\)</span>, vertical velocity component <span class="math inline">\(V_y\)</span>, and total speed:</p>
+<p><span class="math display">\[V = \sqrt{V_x^2 + V_y^2}\]</span></p>
+<p>The aerodynamic drag force acts opposite to the direction of motion and is given by:</p>
+<p><span class="math display">\[F_d = \frac{1}{2} \rho \, C_d \, A \, V^2\]</span></p>
+<p>where <span class="math inline">\(\rho\)</span> is the local air density, <span class="math inline">\(C_d\)</span> is the drag coefficient, and <span class="math inline">\(A\)</span> is the cross-sectional area of the projectile. The coupled ordinary differential equations governing the motion are:</p>
+<p><span class="math display">\[m \frac{dV_x}{dt} = -F_d \cdot \frac{V_x}{V}\]</span></p>
+<p><span class="math display">\[m \frac{dV_y}{dt} = -mg - F_d \cdot \frac{V_y}{V}\]</span></p>
+<p>Substituting the expression for <span class="math inline">\(F_d\)</span> and rearranging:</p>
+<p><span class="math display">\[\frac{dV_x}{dt} = -\frac{\rho \, C_d \, A}{2m} \cdot V \cdot V_x\]</span></p>
+<p><span class="math display">\[\frac{dV_y}{dt} = -g - \frac{\rho \, C_d \, A}{2m} \cdot V \cdot V_y\]</span></p>
+<p>with the kinematic relations:</p>
+<p><span class="math display">\[\frac{dx}{dt} = V_x, \qquad \frac{dy}{dt} = V_y\]</span></p>
+<p>In the ideal (vacuum) case, <span class="math inline">\(F_d = 0\)</span>, so the equations reduce to:</p>
+<p><span class="math display">\[\frac{dV_x}{dt} = 0, \qquad \frac{dV_y}{dt} = -g\]</span></p>
+</section>
+<section id="initial-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="initial-conditions">Initial Conditions</h3>
+<p>The projectile is launched at initial speed <span class="math inline">\(V_0\)</span> and angle <span class="math inline">\(\theta\)</span> from the horizontal:</p>
+<p><span class="math display">\[V_{x_0} = V_0 \cos\theta, \qquad V_{y_0} = V_0 \sin\theta\]</span></p>
+</section>
+<section id="numerical-solution-rk4" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-solution-rk4">Numerical Solution: RK4</h3>
+<p>The ODE system is solved numerically using the <strong>fourth-order Runge-Kutta method (RK4)</strong>. Rather than stepping forward in time with a single slope estimate, RK4 computes four slope estimates per step and combines them into a weighted average:</p>
+<p><span class="math display">\[k_1 = f(t_n,\ y_n)\]</span> <span class="math display">\[k_2 = f\!\left(t_n + \tfrac{h}{2},\ y_n + \tfrac{h}{2}k_1\right)\]</span> <span class="math display">\[k_3 = f\!\left(t_n + \tfrac{h}{2},\ y_n + \tfrac{h}{2}k_2\right)\]</span> <span class="math display">\[k_4 = f(t_n + h,\ y_n + h\,k_3)\]</span> <span class="math display">\[y_{n+1} = y_n + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4)\]</span></p>
+<p>This gives fourth-order accuracy in the step size — well-suited as a numerical solution method for this kind of problems. The implementation is in <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/ProjectileMotion/src/ideal.py"><code>ideal.py</code></a> in the <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/tree/main/ProjectileMotion/src"><code>src</code></a> directory.</p>
+</section>
+<section id="ideal-trajectory" class="level3">
+<h3 class="anchored" data-anchor-id="ideal-trajectory">Ideal Trajectory</h3>
+<p>The plot below shows the ideal projectile trajectory — parabolic, as expected under vacuum conditions:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot/ideal1.png" class="img-fluid figure-img"></p>
+<figcaption>Ideal projectile trajectory under vacuum conditions.</figcaption>
+</figure>
+</div>
+</section>
+<section id="parametric-cases" class="level3">
+<h3 class="anchored" data-anchor-id="parametric-cases">Parametric Cases</h3>
+<p>Several scenarios were tested by varying the initial speed <span class="math inline">\(V_0\)</span>, launch angle <span class="math inline">\(\theta\)</span>, mass <span class="math inline">\(m\)</span>, drag coefficient <span class="math inline">\(C_d\)</span>, cross-sectional area <span class="math inline">\(A\)</span> etc, to verify the reliablity of the code. The cases are shown below:</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot/ideal2.png" class="img-fluid figure-img"></p>
+<figcaption>Case 1</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot/ideal3.png" class="img-fluid figure-img"></p>
+<figcaption>Case 2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot/ideal4.png" class="img-fluid figure-img"></p>
+<figcaption>Case 3</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot/ideal5.png" class="img-fluid figure-img"></p>
+<figcaption>Case 4</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot/ideal6.png" class="img-fluid figure-img"></p>
+<figcaption>Case 5</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot/ideal7.png" class="img-fluid figure-img"></p>
+<figcaption>Case 6</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All the varying conditions are reported in the respective plots.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="data-sourcing-and-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-sourcing-and-preparation">Data Sourcing and Preparation</h2>
+<section id="source" class="level3">
+<h3 class="anchored" data-anchor-id="source">Source</h3>
+<p>The official NASA U.S. Standard Atmosphere 1976 document exists as a PDF, but the scanned quality made direct data extraction impractical. The data was instead sourced manually from a <a href="https://www.digitaldutch.com/atmoscalc/"><code>third-party website</code></a> that <strong>reproduced the NASA tabular values</strong> in a clean, structured format. The only parameters extracted among many other available in the source were: altitude(increased per 200 metres), air density (kg/m³), and dynamic viscosity (Pa·s), from sea level up to 50 km. The raw data was saved as <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/ProjectileMotion/raw_data/us_atmosphere_NASA.csv"><code>us_atmosphere_NASA.csv</code></a> in the <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/tree/main/ProjectileMotion/raw_data"><code>raw_data</code></a> directory.</p>
+</section>
+<section id="cleaning" class="level3">
+<h3 class="anchored" data-anchor-id="cleaning">Cleaning</h3>
+<p>The data was mostly clean as sourced. Cleaning involved standardizing column names and reformatting the data into a more convenient structure for using in the model. The cleaning script <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/ProjectileMotion/cleaning_scripts/clean_us_NASA.py"><code>clean_us_NASA.py</code></a> in the <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/tree/main/ProjectileMotion/cleaning_scripts"><code>cleaning_scripts</code></a> directory handles this, and outputs <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/ProjectileMotion/clean_data/atmosphere_nasa_clean.csv"><code>atmosphere_nasa_clean.csv</code></a> to the <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/tree/main/ProjectileMotion/clean_data"><code>clean_data</code></a> directory.</p>
+</section>
+</section>
+<section id="the-atmospheric-density-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-atmospheric-density-model">The Atmospheric Density Model</h2>
+<section id="observed-shape-of-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="observed-shape-of-the-data">Observed Shape of the Data</h3>
+<p>The cleaned data was first plotted using <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/ProjectileMotion/src/plot_test.py"><code>plot_test.py</code></a> in the <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/tree/main/ProjectileMotion/src"><code>src</code></a> directory to examine its structure:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot/density_height.png" class="img-fluid figure-img"></p>
+<figcaption>Air density as a function of altitude from the NASA dataset.</figcaption>
+</figure>
+</div>
+<p>The density decreases rapidly and smoothly with altitude — a shape consistent with a <strong>decaying exponential</strong>, which follows from the <strong>barometric formula</strong> derived from <strong>hydrostatic equilibrium and the ideal gas law</strong>.</p>
+</section>
+<section id="mathematical-ground" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-ground">Mathematical Ground</h3>
+<section id="exponential-base-model" class="level4">
+<h4 class="anchored" data-anchor-id="exponential-base-model">Exponential Base Model</h4>
+<p>The standard barometric approximation for density as a function of altitude <span class="math inline">\(h\)</span> is:</p>
+<p><span class="math display">\[\rho_{\text{base}}(h) = \rho_0 \, e^{-h/H}\]</span></p>
+<p>where <span class="math inline">\(\rho_0 = 1.225\ \text{kg/m}^3\)</span> is the sea-level density and <span class="math inline">\(H = 8500\ \text{m}\)</span> is the atmospheric scale height. This captures the dominant trend well, but does not precisely match the observed data at all altitudes.</p>
+<div class="callout callout-style-simple callout-warning no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Notice <strong>H</strong> is 8500 m. The collected data and the target range far exceeds that. Although the effects are almost negligible!</p>
+</div>
+</div>
+</div>
+<p>Real atmospheric density deviates from a single-scale-height exponential due to temperature stratification across different layers — the troposphere, stratosphere, and so on.</p>
+</section>
+<section id="more-rigorous-alternatives" class="level4">
+<h4 class="anchored" data-anchor-id="more-rigorous-alternatives">More Rigorous Alternatives</h4>
+<p>For reference, more physically complete models exist:</p>
+<ul>
+<li><strong>The International Standard Atmosphere (ISA)</strong> — a piecewise model with distinct temperature lapse rates defined per atmospheric layer, giving a more accurate density profile across the full altitude range.</li>
+<li><strong>NRLMSISE-00</strong> — an empirical model that accounts for solar activity, geographic location, and time of day. Commonly used in orbital mechanics and atmospheric re-entry calculations.</li>
+</ul>
+<p>For the purposes of this project — 50 km range, conventional projectile conditions — the deviation from the simple exponential is small enough that a lighter correction approach is sufficient.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Those more rigorous models could also be used as per necessity.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="hybrid-correction-residual-fitting" class="level4">
+<h4 class="anchored" data-anchor-id="hybrid-correction-residual-fitting">Hybrid Correction: Residual Fitting</h4>
+<p>Rather than replacing the base exponential model, a <strong>residual correction</strong> was applied. The residual at each altitude is defined as:</p>
+<p><span class="math display">\[\varepsilon(h) = \rho_{\text{observed}}(h) - \rho_{\text{base}}(h)\]</span></p>
+<p>A <strong>cubic spline</strong> <span class="math inline">\(\hat{\varepsilon}(h)\)</span> is then fitted to these residuals. The spline interpolates smoothly between data points using piecewise cubic polynomials, with the “not-a-knot” boundary condition — a standard choice for this case.</p>
+<p>The final hybrid density model is:</p>
+<p><span class="math display">\[\rho_{\text{hybrid}}(h) = \rho_{\text{base}}(h) + \hat{\varepsilon}(h)\]</span></p>
+<p>By construction, <span class="math inline">\(\rho_{\text{hybrid}}\)</span> passes exactly through every data point in the cleaned NASA dataset.</p>
+</section>
+</section>
+<section id="application" class="level3">
+<h3 class="anchored" data-anchor-id="application">Application</h3>
+<p>The hybrid density was test coded and plotted alongside the raw data using <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/ProjectileMotion/src/atmosphere_model.py"><code>atmosphere_model.py</code></a> in the <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/tree/main/ProjectileMotion/src"><code>src</code></a> directory:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot/hybrid_density.png" class="img-fluid figure-img"></p>
+<figcaption>Hybrid density model overlaid on observed NASA data.</figcaption>
+</figure>
+</div>
+<p>The nearly perfect overlap between the two curves in the figure is a direct result of how closely the model tracks the data rather than a rendering artifact.</p>
+<div class="callout callout-style-simple callout-warning no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Notice how the 2 different colored locus merged almost perfectly to create the greyish locus!</p>
+</div>
+</div>
+</div>
+<p>The profile is smooth and well-behaved across a 50 km range under typical air circumstances, and the cubic spline correction readily absorbs the slight deviations from the base exponential. The improved projectile simulation was then created by passing this hybrid atmospheric density function straight into <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/ProjectileMotion/src/rho_hybrid_projectile.py"><code>rho_hybrid_projectile.py</code></a>.</p>
+<hr>
+</section>
+</section>
+<section id="enhanced-projectile-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="enhanced-projectile-simulation">Enhanced Projectile Simulation</h2>
+<p>With <span class="math inline">\(\rho_{\text{hybrid}}(h)\)</span> defined, it was substituted directly into the drag force term of the projectile ODE system . The drag force at each time step becomes:</p>
+<p><span class="math display">\[F_d(h) = \frac{1}{2} \, \rho_{\text{hybrid}}(h) \, C_d \, A \, V^2\]</span></p>
+<p>Since <span class="math inline">\(\rho\)</span> is now a function of the projectile’s current altitude <span class="math inline">\(y(t)\)</span>, the drag force varies continuously throughout the flight. The RK4 integrator handles this naturally, re-evaluating the force at each sub-step. Check the above mentioned <em>python code</em> for the full implementation.</p>
+<section id="result" class="level3">
+<h3 class="anchored" data-anchor-id="result">Result</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot/plot_hybrid.png" class="img-fluid figure-img"></p>
+<figcaption>Enhanced projectile trajectory with atmospheric drag.</figcaption>
+</figure>
+</div>
+<p>The resulting trajectory is noticeably shorter and lower than the ideal parabola. The drag effect is most pronounced at high speeds — consistent with the <span class="math inline">\(V^2\)</span> dependence of <span class="math inline">\(F_d\)</span> — and diminishes as the projectile slows.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

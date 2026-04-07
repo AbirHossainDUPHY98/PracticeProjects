@@ -1,0 +1,28 @@
+.quarto-title-block {
+  background: linear-gradient(135deg, #0b1f2e, #0d2d2a);
+  color: #3ecfb2;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.quarto-title-block .title {
+  color: #fffff0;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.quarto-title-block .subtitle {
+  color: #ffffee;
+  font-size: 1.1rem;
+}
+
+.quarto-title-block .author,
+.quarto-title-block .date {
+  color: #fefefe;
+  font-size: 0.95rem;
+}
+
+.quarto-title-block:empty {
+  display: none;
+}

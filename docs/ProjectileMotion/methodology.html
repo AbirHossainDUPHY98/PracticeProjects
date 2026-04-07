@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>discussion – Macroeconomic Analysis of Bangladesh Banking Sector</title>
+<title>methodology – Projectile Motion Equation Modeled with Atmospheric Density Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7b059a4ef72ab93b1f035ec67d539a57.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4164442f402d20f3264a742c772b0155.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Macroeconomic Analysis of Bangladesh Banking Sector</span>
+    <span class="navbar-title">Projectile Motion Equation Modeled with Atmospheric Density Data</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -95,15 +124,15 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Index</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./methodology.html"> 
+    <a class="nav-link active" href="./methodology.html" aria-current="page"> 
 <span class="menu-text">Methodology</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analytics.html"> 
-<span class="menu-text">Analysis</span></a>
+    <a class="nav-link" href="./model.html"> 
+<span class="menu-text">The Model</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./discussion.html" aria-current="page"> 
+    <a class="nav-link" href="./discussion.html"> 
 <span class="menu-text">Discussion</span></a>
   </li>  
 </ul>
@@ -122,13 +151,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#insights" id="toc-insights" class="nav-link active" data-scroll-target="#insights">Insights</a>
-  <ul class="collapse">
-  <li><a href="#the-gap-between-potential-and-performance" id="toc-the-gap-between-potential-and-performance" class="nav-link" data-scroll-target="#the-gap-between-potential-and-performance">The gap between potential and performance</a></li>
-  <li><a href="#a-country-shaped-by-its-own-history" id="toc-a-country-shaped-by-its-own-history" class="nav-link" data-scroll-target="#a-country-shaped-by-its-own-history">A country shaped by its own history</a></li>
-  <li><a href="#where-this-leaves-bangladesh" id="toc-where-this-leaves-bangladesh" class="nav-link" data-scroll-target="#where-this-leaves-bangladesh">Where this leaves Bangladesh</a></li>
-  </ul></li>
-  <li><a href="#authors-take" id="toc-authors-take" class="nav-link" data-scroll-target="#authors-take">Author’s Take</a></li>
+  <li><a href="#project-structure" id="toc-project-structure" class="nav-link active" data-scroll-target="#project-structure">Project Structure</a></li>
+  <li><a href="#strategic-workflow" id="toc-strategic-workflow" class="nav-link" data-scroll-target="#strategic-workflow">Strategic Workflow</a></li>
   </ul>
 </nav>
     </div>
@@ -138,64 +162,34 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="insights" class="level2">
-<h2 class="anchored" data-anchor-id="insights">Insights</h2>
-<section id="the-gap-between-potential-and-performance" class="level3">
-<h3 class="anchored" data-anchor-id="the-gap-between-potential-and-performance">The gap between potential and performance</h3>
-<p>Bangladesh’s macroeconomic trajectory over the studied period <em>(2011–2024)</em> is, on balance, a story of genuine progress. GDP per capita grew steadily for over a decade, investment expanded, unemployment stabilised, and government debt declined. For an economy built on the structural advantages of a large and growing labour force, competitive production costs, and substantial remittance inflows, <strong>this arc is not surprising</strong> — these are durable foundations that tend to produce growth even under unfavourable institutional conditions.</p>
-<p>What is surprising — or perhaps not, given the history — is <strong>how consistently the banking sector failed to convert that macroeconomic momentum into a healthy credit environment. Non-performing loans climbed steadily. Private credit contracted. The deposits-to-loans ratio deteriorated.</strong> These are not peripheral indicators — they sit at the centre of how a developing economy translates aggregate growth into broad-based opportunity. When the banking sector underperforms, it acts as a ceiling on what the macroeconomic fundamentals can actually deliver.</p>
-<hr>
-</section>
-<section id="a-country-shaped-by-its-own-history" class="level3">
-<h3 class="anchored" data-anchor-id="a-country-shaped-by-its-own-history">A country shaped by its own history</h3>
-<p>To understand why, lets step back from the data entirely.</p>
-<p>Bangladesh is a young country in the most literal sense. It emerged from a devastating liberation war in 1971 with barely half a decade to rebuild its institutions, social fabric, and economic foundations before the pressures of governance took hold. The country it became was shaped as much by that rupture as by anything that followed. It inherited fertile agricultural land and a vast population — both of which can be assets under the right conditions, and constraints under the wrong ones. For a low-income economy still finding its footing, a large population demands enormous institutional capacity to translate into productive labour. <strong>That capacity has, repeatedly, been undermined</strong>.</p>
-<p>Political instability has been a near-constant feature of Bangladesh’s post-independence history, and the period studied here is no exception. The student-led uprising and subsequent overthrow of the incumbent government — which had held power across the bulk of this study’s timeframe — did not emerge from a vacuum. It was the surface expression of years of accumulated institutional decay: corruption embedded in state structures, money channelled through politically connected enterprises, and <strong>a banking system that functioned, at least in part, as an instrument of patronage rather than credit intermediation.</strong></p>
-<div class="callout callout-style-simple callout-caution no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>The non-performing loans trajectory does not just reflect economic cycles. <strong>It reflects governance failure.</strong></p>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="where-this-leaves-bangladesh" class="level3">
-<h3 class="anchored" data-anchor-id="where-this-leaves-bangladesh">Where this leaves Bangladesh</h3>
-<p><strong>An economy that grows despite its institutions rather than because of them is an economy leaving a significant portion of its potential unrealised.</strong> The gap between what the macroeconomic indicators suggested and what banking sector performance actually delivered is precisely the size of that institutional drag.</p>
-<p>The path forward is not complicated to describe, even if it is genuinely difficult to execute: transparent institutions, accountable governance, and a banking system that allocates credit on the basis of economic merit rather than political proximity. Bangladesh’s fundamentals are strong enough that even partial progress on those fronts could unlock a substantially different trajectory in the decades ahead.</p>
+<section id="project-structure" class="level2">
+<h2 class="anchored" data-anchor-id="project-structure">Project Structure</h2>
+<pre><code>├── clean_data
+├── cleaning_scripts
+├── raw_data
+├── results
+└── src</code></pre>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>What comes next depends on whether the institutional failures it documents are treated as the emergency they are.**</p>
+<p>All the source codes and the data files can be found <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/tree/main/ProjectileMotion">here</a>.</p>
 </div>
 </div>
 </div>
+<hr>
 </section>
-</section>
-<section id="authors-take" class="level2">
-<h2 class="anchored" data-anchor-id="authors-take">Author’s Take</h2>
-<p>This was an exercise project that was designed to :</p>
-<ul>
-<li>Move to a bigger project (dataset size, diverging fields) with more functional complexity than the <a href="https://abirhossainduphy98.github.io/PracticeProjects/GDP_perCapita/index.html">previous project</a>.</li>
-<li>Practical use of SQL-RDBMS on local systems for data manipulation and database handling.</li>
-</ul>
-<div class="callout callout-style-simple callout-important no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>The reader is asked to not view this work under the same lens as <strong>impactful data science research respected by the community</strong>. The practice grows progressively into more real-world application oriented ideas and toolings, check out my <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects">PracticeProjects</a> repo, where there are some other “practice projects” I had done to develop the necessary skillsets for my target workflow. Other original research ideas and interesting projects are currently under development.</p>
-</div>
-</div>
-</div>
+<section id="strategic-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="strategic-workflow">Strategic Workflow</h2>
+<p>The project follows the sequential stages:</p>
+<ol type="1">
+<li><strong>Establishing the ideal model</strong> — solve the projectile ODE system numerically under vacuum conditions and verify: it produces the expected parabolic trajectories.</li>
+<li><strong>Build an atmospheric density model</strong> — fit a function <span class="math inline">\(\rho(h)\)</span> to the NASA observational data.</li>
+<li><strong>Combine</strong> — substitute <span class="math inline">\(\rho(h)\)</span> into the drag force term of the ideal model and re-simulate.</li>
+</ol>
+<p>Each stage builds directly on the previous one, which makes it straightforward to isolate the contribution of each addition. The details about the modeling process and application can be found on the <a href="https://abirhossainduphy98.github.io/PracticeProjects/ProjectileMotion/model.html">next page</a>.</p>
 
 
 </section>
