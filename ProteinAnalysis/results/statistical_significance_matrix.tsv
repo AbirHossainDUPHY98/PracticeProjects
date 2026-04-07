@@ -1,0 +1,25 @@
+feature	pval_anova	pval_kruskal	significant_anova	significant_kw	Homo sapiens_vs_Bos taurus	Homo sapiens_vs_Mus musculus	Bos taurus_vs_Mus musculus	pval_anova_bonf	pval_kw_bonf	significant_anova_bonf	significant_kw_bonf
+entropy	0.0	0.0	True	True	0.503354	0.0	0.0	0.0	0.0	True	True
+hydrophobicity	3.2e-05	0.0	True	True	0.0	0.207667	0.000243	0.000768	0.0	True	True
+length	0.0	0.0	True	True	0.0	0.0	0.0	0.0	0.0	True	True
+molecular_weight	0.0	0.0	True	True	0.0	0.0	0.0	0.0	0.0	True	True
+freq_A	0.004161	0.003394	True	True	0.038518	0.075547	0.000678	0.099864	0.081456	False	False
+freq_C	0.0	0.001022	True	True	0.00033	0.719096	0.005873	0.0	0.024527999999999998	True	True
+freq_D	0.0	0.0	True	True	5e-06	0.0	0.518578	0.0	0.0	True	True
+freq_E	0.006261	0.000302	True	True	0.166298	5.4e-05	0.018305	0.150264	0.007248000000000001	False	True
+freq_F	0.0	0.0	True	True	0.0	0.036654	0.000335	0.0	0.0	True	True
+freq_G	0.284241	0.06792	False	False	0.049094	0.688478	0.032116	6.821784000000001	1.63008	False	False
+freq_H	0.0	0.0	True	True	0.0	0.821609	0.0	0.0	0.0	True	True
+freq_I	0.0	0.0	True	True	0.0	0.033721	0.000456	0.0	0.0	True	True
+freq_K	0.0	0.0	True	True	0.0	0.473456	1.1e-05	0.0	0.0	True	True
+freq_L	0.068345	0.109069	False	False	0.180218	0.284965	0.03525	1.6402800000000002	2.617656	False	False
+freq_M	0.0	0.0	True	True	0.0	0.003017	2.9e-05	0.0	0.0	True	True
+freq_N	0.046078	0.04231	True	True	0.139824	0.015789	0.382385	1.105872	1.01544	False	False
+freq_P	0.0	0.0	True	True	0.0	0.966767	0.0	0.0	0.0	True	True
+freq_Q	0.0	0.0	True	True	0.0	0.004826	0.000153	0.0	0.0	True	True
+freq_R	0.000557	0.008281	True	True	0.045049	0.122848	0.002027	0.013368	0.198744	True	False
+freq_S	0.0	0.0	True	True	0.0	0.000725	0.0	0.0	0.0	True	True
+freq_T	0.0	0.0	True	True	0.738837	0.0	0.0	0.0	0.0	True	True
+freq_V	0.0	0.0	True	True	0.0	4e-06	0.000542	0.0	0.0	True	True
+freq_W	0.002554	0.027663	True	True	0.008879	0.631977	0.060651	0.061295999999999996	0.6639120000000001	False	False
+freq_Y	1.5e-05	0.0	True	True	0.0	0.000116	0.190356	0.00036	0.0	True	True

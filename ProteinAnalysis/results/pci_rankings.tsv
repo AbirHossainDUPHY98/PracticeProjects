@@ -1,0 +1,4 @@
+Organism	Mean_Entropy	Feature_Variance	Redundancy_Ratio	PCI	Rank
+Bos taurus	4.0679	22.0028	0.2772	322.9	1
+Mus musculus	4.0824	22.0031	0.2787	322.25	2
+Homo sapiens	4.0651	22.0015	0.2827	316.34	3

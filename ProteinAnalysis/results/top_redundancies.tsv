@@ -1,0 +1,16 @@
+	Organism	Feature_A	Feature_B	Mutual_Information
+76	Bos taurus	freq_C	freq_W	0.5943
+193	Bos taurus	freq_M	freq_W	0.5511
+151	Bos taurus	freq_H	freq_W	0.5114
+143	Bos taurus	freq_H	freq_M	0.449
+230	Bos taurus	freq_W	freq_Y	0.4382
+424	Homo sapiens	freq_M	freq_W	0.585
+307	Homo sapiens	freq_C	freq_W	0.5759
+382	Homo sapiens	freq_H	freq_W	0.5429
+374	Homo sapiens	freq_H	freq_M	0.4887
+461	Homo sapiens	freq_W	freq_Y	0.4719
+538	Mus musculus	freq_C	freq_W	0.3889
+613	Mus musculus	freq_H	freq_W	0.3354
+655	Mus musculus	freq_M	freq_W	0.3155
+692	Mus musculus	freq_W	freq_Y	0.2907
+605	Mus musculus	freq_H	freq_M	0.2864
