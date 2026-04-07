@@ -1,0 +1,29 @@
+.quarto-title-block {
+    background: linear-gradient(135deg, #282a36, #1e2030);
+    color: #f8f8f2;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    border-left: 4px solid #bd93f9;
+    margin-bottom: 2rem;
+}
+.quarto-title-block .title {
+    color: #bd93f9;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.quarto-title-block .subtitle {
+    color: #f8f8f2;
+    font-size: 1.1rem;
+    opacity: 0.85;
+}
+.quarto-title-block .author,
+.quarto-title-block .date {
+    color: #6272a4;
+    font-size: 0.95rem;
+}
+.quarto-title-block .author {
+    color: #50fa7b;
+}
+.quarto-title-block:empty {
+    display: none;
+}

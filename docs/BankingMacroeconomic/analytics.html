@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>analytics – Macroeconomic Analysis of Bangladesh Banking Sector</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7b059a4ef72ab93b1f035ec67d539a57.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Macroeconomic Analysis of Bangladesh Banking Sector</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Index</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./analytics.html" aria-current="page"> 
+<span class="menu-text">Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./discussion.html"> 
+<span class="menu-text">Discussion</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#macroeconomic-overview" id="toc-macroeconomic-overview" class="nav-link active" data-scroll-target="#macroeconomic-overview">Macroeconomic Overview</a>
+  <ul class="collapse">
+  <li><a href="#economic-growth" id="toc-economic-growth" class="nav-link" data-scroll-target="#economic-growth">Economic Growth</a></li>
+  <li><a href="#investment-employment" id="toc-investment-employment" class="nav-link" data-scroll-target="#investment-employment">Investment &amp; Employment</a></li>
+  </ul></li>
+  <li><a href="#price-monetary-environment" id="toc-price-monetary-environment" class="nav-link" data-scroll-target="#price-monetary-environment">Price &amp; Monetary Environment</a>
+  <ul class="collapse">
+  <li><a href="#inflation" id="toc-inflation" class="nav-link" data-scroll-target="#inflation">Inflation</a></li>
+  <li><a href="#broad-money-supply" id="toc-broad-money-supply" class="nav-link" data-scroll-target="#broad-money-supply">Broad Money Supply</a></li>
+  </ul></li>
+  <li><a href="#fiscal-position" id="toc-fiscal-position" class="nav-link" data-scroll-target="#fiscal-position">Fiscal Position</a>
+  <ul class="collapse">
+  <li><a href="#government-debt" id="toc-government-debt" class="nav-link" data-scroll-target="#government-debt">Government Debt</a></li>
+  </ul></li>
+  <li><a href="#banking-sector-lending-activity" id="toc-banking-sector-lending-activity" class="nav-link" data-scroll-target="#banking-sector-lending-activity">Banking Sector — Lending Activity</a>
+  <ul class="collapse">
+  <li><a href="#total-loans" id="toc-total-loans" class="nav-link" data-scroll-target="#total-loans">Total Loans</a></li>
+  <li><a href="#domestic-credit-to-private-sector" id="toc-domestic-credit-to-private-sector" class="nav-link" data-scroll-target="#domestic-credit-to-private-sector">Domestic Credit to Private Sector</a></li>
+  </ul></li>
+  <li><a href="#banking-sector-health-risk" id="toc-banking-sector-health-risk" class="nav-link" data-scroll-target="#banking-sector-health-risk">Banking Sector — Health &amp; Risk</a>
+  <ul class="collapse">
+  <li><a href="#liquidity-position" id="toc-liquidity-position" class="nav-link" data-scroll-target="#liquidity-position">Liquidity Position</a></li>
+  <li><a href="#loan-quality" id="toc-loan-quality" class="nav-link" data-scroll-target="#loan-quality">Loan Quality</a></li>
+  </ul></li>
+  <li><a href="#synthesis-growth-above-the-surface-tension-underneath" id="toc-synthesis-growth-above-the-surface-tension-underneath" class="nav-link" data-scroll-target="#synthesis-growth-above-the-surface-tension-underneath">Synthesis: <em>Growth above the surface, tension underneath</em></a>
+  <ul class="collapse">
+  <li><a href="#did-economic-slowdown-drive-the-banking-stress" id="toc-did-economic-slowdown-drive-the-banking-stress" class="nav-link" data-scroll-target="#did-economic-slowdown-drive-the-banking-stress">Did economic slowdown drive the banking stress?</a></li>
+  <li><a href="#credit-boom-and-bust-cycle" id="toc-credit-boom-and-bust-cycle" class="nav-link" data-scroll-target="#credit-boom-and-bust-cycle">Credit Boom and Bust Cycle</a></li>
+  <li><a href="#monetary-expansion-and-price-effects" id="toc-monetary-expansion-and-price-effects" class="nav-link" data-scroll-target="#monetary-expansion-and-price-effects">Monetary Expansion and Price Effects</a></li>
+  <li><a href="#fiscal-pressure-on-the-banking-sector" id="toc-fiscal-pressure-on-the-banking-sector" class="nav-link" data-scroll-target="#fiscal-pressure-on-the-banking-sector">Fiscal Pressure on the Banking Sector</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="macroeconomic-overview" class="level2">
+<h2 class="anchored" data-anchor-id="macroeconomic-overview">Macroeconomic Overview</h2>
+<p>The macroeconomic environment in Bangladesh throughout the period under observation shows a developing economy juggling fiscal restraints, inflationary cycles, and growth demands.</p>
+<section id="economic-growth" class="level3">
+<h3 class="anchored" data-anchor-id="economic-growth">Economic Growth</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/GDP_per_capita_(currentUS$).png" class="img-fluid figure-img"></p>
+<figcaption>GDP per Capita</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_of_GDP_per_capita_(currentUS$).png" class="img-fluid figure-img"></p>
+<figcaption>Change in GDP per Capita</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>For around eleven years, Bangladesh’s GDP per capita grew remarkably, then starting in 2022, it began to decline. The rate-of-change data supports this — growth peaked in 2015 before pulling back in 2016, slowed again in 2022, and recovered to more stable levels by 2023.</p>
+</section>
+<section id="investment-employment" class="level3">
+<h3 class="anchored" data-anchor-id="investment-employment">Investment &amp; Employment</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/total_investment.png" class="img-fluid figure-img"></p>
+<figcaption>Total Investment</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_of_total_investment.png" class="img-fluid figure-img"></p>
+<figcaption>Change in Total Investment</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Over the course of the study, total investment steadily increased, which is a positive signal for the nation’s long-term socioeconomic development.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/unemployment_rate.png" class="img-fluid figure-img"></p>
+<figcaption>Unemployment Rate</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_of_unemployment_rate.png" class="img-fluid figure-img"></p>
+<figcaption>Change in Unemployment Rate</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>2011 saw a significant rise in unemployment despite a period of general economic expansion — a reminder that aggregate growth does not always translate immediately into job creation. By 2013, the rate had been brought down to stable levels, where it largely remained.</p>
+<hr>
+</section>
+</section>
+<section id="price-monetary-environment" class="level2">
+<h2 class="anchored" data-anchor-id="price-monetary-environment">Price &amp; Monetary Environment</h2>
+<section id="inflation" class="level3">
+<h3 class="anchored" data-anchor-id="inflation">Inflation</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Inflation_consumer_prices_annual.png" class="img-fluid figure-img"></p>
+<figcaption>Inflation — Consumer Prices</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_of_inflation_consumer_prices.png" class="img-fluid figure-img"></p>
+<figcaption>Change in Inflation — Consumer Prices</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Inflation_rate.png" class="img-fluid figure-img"></p>
+<figcaption>Inflation Rate</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_of_inflation_rate.png" class="img-fluid figure-img"></p>
+<figcaption>Change in Inflation Rate</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>2011 proved to be an inflection point for price stability: inflation fell to nearly half its prior level and held there for close to eight years. From 2019 onwards, however, <strong>a steep reversal brought inflation back toward earlier highs</strong> — a trend that has yet to fully unwind.</p>
+</section>
+<section id="broad-money-supply" class="level3">
+<h3 class="anchored" data-anchor-id="broad-money-supply">Broad Money Supply</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Broad_money_of_GDP.png" class="img-fluid figure-img"></p>
+<figcaption>Broad Money of GDP</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_of_broad_money_of_GDP.png" class="img-fluid figure-img"></p>
+<figcaption>Change in Broad Money of GDP</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Between 2011 and 2015, broad money as a percentage of GDP increased, with two significant contractions in 2015 and 2019. The rate-of-change data presents a more sobering picture: over the majority of the period, money supply growth was negative relative to GDP, indicating that <strong>monetary expansion was decelerating even as the broader economy grew</strong>. Given the inflationary pressures that later surfaced, this divergence deserves attention.</p>
+<hr>
+</section>
+</section>
+<section id="fiscal-position" class="level2">
+<h2 class="anchored" data-anchor-id="fiscal-position">Fiscal Position</h2>
+<section id="government-debt" class="level3">
+<h3 class="anchored" data-anchor-id="government-debt">Government Debt</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Government_debt.png" class="img-fluid figure-img"></p>
+<figcaption>Government Debt</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_of_government_debt.png" class="img-fluid figure-img"></p>
+<figcaption>Change in Government Debt</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Government debt declined as a whole across the studied period. The rate-of-change data confirms this, with the average sitting in negative territory despite occasional spikes in either direction. On the surface this appears as a mark of fiscal prudence — though as explored in the synthesis section below, the relationship between public borrowing and private credit access complicates this reading.</p>
+<hr>
+</section>
+</section>
+<section id="banking-sector-lending-activity" class="level2">
+<h2 class="anchored" data-anchor-id="banking-sector-lending-activity">Banking Sector — Lending Activity</h2>
+<p>The credit intermediation data presents a mixed picture. While headline totals appear relatively stable, the composition and quality of credit shifted meaningfully over the period — and not always in a healthy direction.</p>
+<section id="total-loans" class="level3">
+<h3 class="anchored" data-anchor-id="total-loans">Total Loans</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Loans_total.png" class="img-fluid figure-img"></p>
+<figcaption>Total Loans</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_of_loans_total.png" class="img-fluid figure-img"></p>
+<figcaption>Change in Total Loans</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Total loans held broadly steady in nominal terms over the years, though the rate-of-change data reveals two sharp peaks in lending growth. <strong>These bursts of credit expansion, absent a corresponding improvement in loan quality, are worth reading as early warning signals in hindsight.</strong></p>
+</section>
+<section id="domestic-credit-to-private-sector" class="level3">
+<h3 class="anchored" data-anchor-id="domestic-credit-to-private-sector">Domestic Credit to Private Sector</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Domestic_credit_to_private_sector.png" class="img-fluid figure-img"></p>
+<figcaption>Domestic Credit to Private Sector</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_of_domestic_credit_to_private_sector_of_GDP.png" class="img-fluid figure-img"></p>
+<figcaption>Change in Domestic Credit to Private Sector</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Over the course of the study, the value of domestic credit flowing to the private sector decreased — <strong>a worrying trend for an economy where private enterprise is the primary driver of growth and employment.</strong> Whether this reflects deliberate risk aversion by banks, reduced creditworthy demand, or crowding-out from public sector borrowing is addressed in the synthesis section.</p>
+<hr>
+</section>
+</section>
+<section id="banking-sector-health-risk" class="level2">
+<h2 class="anchored" data-anchor-id="banking-sector-health-risk">Banking Sector — Health &amp; Risk</h2>
+<section id="liquidity-position" class="level3">
+<h3 class="anchored" data-anchor-id="liquidity-position">Liquidity Position</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Deposits_to_loans_PCT.png" class="img-fluid figure-img"></p>
+<figcaption>Deposits to Loans %</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_deposits_to_loans_PCT.png" class="img-fluid figure-img"></p>
+<figcaption>Change in Deposits to Loans %</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The deposits-to-loans ratio declined consistently across the studied period. <strong>A falling ratio sustained over a decade indicates that loan books were growing faster than deposit funding — or that deposits were eroding — both of which point to a structurally thinner liquidity cushion in the banking system.</strong></p>
+</section>
+<section id="loan-quality" class="level3">
+<h3 class="anchored" data-anchor-id="loan-quality">Loan Quality</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/nonperforming_loans.png" class="img-fluid figure-img"></p>
+<figcaption>Non-Performing Loans</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Plots/Change_of_nonperforming_loans.png" class="img-fluid figure-img"></p>
+<figcaption>Change in Non-Performing Loans</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The non-performing loans data is the most telling indicator in this section — and likely the primary driver behind the deteriorating deposits-to-loans picture. <strong>NPLs rose steadily across the period, with particularly sharp jumps in 2011 and 2024.</strong> A banking system carrying an expanding stock of bad debt cannot efficiently recycle capital into productive lending, and the downstream effects of this are visible across nearly every other credit indicator.</p>
+<hr>
+</section>
+</section>
+<section id="synthesis-growth-above-the-surface-tension-underneath" class="level2">
+<h2 class="anchored" data-anchor-id="synthesis-growth-above-the-surface-tension-underneath">Synthesis: <em>Growth above the surface, tension underneath</em></h2>
+<section id="did-economic-slowdown-drive-the-banking-stress" class="level3">
+<h3 class="anchored" data-anchor-id="did-economic-slowdown-drive-the-banking-stress">Did economic slowdown drive the banking stress?</h3>
+<p>There is a clear lag in the relationship between GDP per capita growth and NPL accumulation. Around 2019–2020, growth began to slow down, and in the years that followed, non-performing loans accelerated — consistent with the typical one-to-two year transmission lag in which number of borrowers which expanded during a growth cycle begins defaulting once revenues slow.</p>
+<div class="callout callout-style-simple callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Engineered Banking Stress
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The sharp NPL jump around 2024 likely reflects something more acute than a routine downturn: the compounding effect of political instability, capital flight, and a weakened state capacity to enforce credit discipline. <strong>Bangladesh’s banking stress was not merely cyclical — it was structurally enabled.</strong></p>
+</div>
+</div>
+</section>
+<section id="credit-boom-and-bust-cycle" class="level3">
+<h3 class="anchored" data-anchor-id="credit-boom-and-bust-cycle">Credit Boom and Bust Cycle</h3>
+<p>Private sector credit expanded through the mid-2010s, broadly coinciding with the period of strong GDP growth and rising investment. This expansion, however, was not matched by improvements in underwriting discipline — as the subsequent steady rise in non-performing loans makes clear.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>A contraction driven by stress, not strategy
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The pullback in private credit from 2019 onwards may look like prudent tightening on a chart, but in context it reflects banks retreating due to deteriorating balance sheets rather than deliberate policy. <strong>A credit contraction driven by institutional stress constrains productive investment precisely when the economy needs it most</strong> — reinforcing a negative feedback loop between banking sector health and real activity.</p>
+</div>
+</div>
+</section>
+<section id="monetary-expansion-and-price-effects" class="level3">
+<h3 class="anchored" data-anchor-id="monetary-expansion-and-price-effects">Monetary Expansion and Price Effects</h3>
+<p>Broad money growth broadly tracks the inflation trajectory with a short lag, and the relationship holds in both directions. The relative price stability between roughly 2012 and 2019 coincided with a period in which monetary expansion, while positive, was moderating — suggesting reasonable calibration during that window. The inflationary resurgence from 2019 onwards aligns with renewed monetary loosening, likely driven by government financing pressures and post-pandemic liquidity support.</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Limited independence for Bangladesh Bank!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The data points to a central bank with constrained operational independence when fiscal demands pull in the other direction.</p>
+</div>
+</div>
+</section>
+<section id="fiscal-pressure-on-the-banking-sector" class="level3">
+<h3 class="anchored" data-anchor-id="fiscal-pressure-on-the-banking-sector">Fiscal Pressure on the Banking Sector</h3>
+<p>Government debt as a share of GDP declined over the studied period, which on its face appears fiscally responsible. However, the declining domestic credit to the private sector over the same window suggests <strong>a possible crowding-out dynamic: as the government continued drawing on domestic financial markets, private borrowers faced tighter credit availability and higher effective borrowing costs!</strong></p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The private sector squeezed from both sides
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Combined with rising NPLs — which erode bank capital and reduce the capacity to extend new credit — <strong>the private sector found itself constrained from two directions simultaneously.</strong> This helps explain why aggregate investment figures remained positive even as the credit environment for private enterprise quietly worsened: the investment data captures what happened; <strong>the credit data hints at how much more might have been possible under a healthier banking system.</strong></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
