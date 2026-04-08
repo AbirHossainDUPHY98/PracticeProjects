@@ -4,7 +4,6 @@ from io import StringIO
 import os
 import time
 
-# Configuration
 OUTPUT_DIR = "../raw_data/"
 CHUNK_SIZE = 500_000
 
@@ -35,7 +34,6 @@ OECD_HEADERS = {
     "User-Agent": "Mozilla/5.0 (data-download-script)",
 }
 
-# Shared helper
 def save_chunks(df: pd.DataFrame, prefix: str) -> None:
     n_chunks = max(1, (len(df) - 1) // CHUNK_SIZE + 1)
     for i in range(n_chunks):
@@ -186,7 +184,6 @@ def run_oecd() -> None:
     print(df_pivot.tail().to_string())
     save_chunks(df_pivot, "oecd")
 
-# Entry point
 if __name__ == "__main__":
     run_worldbank()
     run_oecd()

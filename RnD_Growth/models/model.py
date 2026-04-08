@@ -8,20 +8,14 @@ from scipy.stats import pearsonr, spearmanr
 from scipy import stats
 from scipy.optimize import curve_fit
 
-# ─────────────────────────────────────────────────────────────────────────────
-# CONFIG
-# ─────────────────────────────────────────────────────────────────────────────
-
 RESULTS_DIR = "../results"
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-# Filtering thresholds for efficiency calculations
 MIN_PATENTS    = 500
 MIN_INVENTORS  = 2_000
 MIN_RD_GDP     = 1.0
 MIN_POPULATION = 5_000_000
 
-# Country income group labels (sourced from World Bank / IMF)
 HIGH_INCOME = [
     "ABW", "AND", "ARE", "ATG", "AUS", "AUT", "BEL", "BHR", "BHS", "BMU",
     "BRB", "BRN", "CAN", "CHE", "CHL", "CUW", "CYM", "CYP", "CZE", "DEU",
@@ -39,27 +33,12 @@ EMERGING_ECONOMIES = [
     "ARE", "VNM",
 ]
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SECTION 1 — DATA LOADING
-# ─────────────────────────────────────────────────────────────────────────────
-# Loads subset_A and subset_B from the processed parquet directory.
-# subset_B is preferred for R&D analysis because it has better rd_gdp coverage.
-
 def load_data():
     df_A = pd.read_parquet("../processed/analytical_data/subset_A.parquet")
     df_B = pd.read_parquet("../processed/analytical_data/subset_B.parquet")
     print(f"Loaded subset_A: {df_A.shape}")
     print(f"Loaded subset_B: {df_B.shape}")
     return df_A, df_B
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SECTION 2 — AGGREGATION
-# ─────────────────────────────────────────────────────────────────────────────
-# Collapses both subsets to one row per (country_code, year).
-# Patent and inventor counts are summed; economic indicators take first value
-# since they are already country-year level.
 
 def aggregate_subsets(df_A, df_B):
     df_B_agg = df_B.groupby(["country_code", "year"], observed=True).agg(
@@ -78,7 +57,6 @@ def aggregate_subsets(df_A, df_B):
         gdp_growth=("gdp_growth", "first"),
     ).reset_index()
 
-    # Merge A and B to get rd_gdp alongside A's patent counts
     df_merged = pd.merge(
         df_A_agg[["country_code", "year", "patent_count", "population", "gdp_growth"]],
         df_B_agg[["country_code", "year", "rd_gdp"]],
@@ -88,22 +66,10 @@ def aggregate_subsets(df_A, df_B):
 
     return df_B_agg, df_merged
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SECTION 3 — RD vs PATENT CORRELATION
-# ─────────────────────────────────────────────────────────────────────────────
-# Tests whether higher R&D spending (% of GDP) is associated with more patents.
-# Uses both Pearson (linear) and Spearman (monotonic/rank-based) correlations.
-# Applies log-transform to patent_count to handle the heavy right-skew.
-# Saves:
-#   fig1_rd_vs_patents_raw.png        — scatter of raw R&D vs patents
-#   fig2_rd_vs_patents_regplot.png    — regression lines raw vs log-scale
-
 def analyse_rd_vs_patents(df_B_agg):
     df = df_B_agg.copy()
     df["log_patents"] = np.log1p(df["patent_count"])
 
-    # --- Pearson & Spearman on raw ---
     r_raw,  p_raw  = pearsonr(df["rd_gdp"], df["patent_count"])
     rho,    p_rho  = spearmanr(df["rd_gdp"], df["patent_count"])
     r_log,  p_log  = pearsonr(df["rd_gdp"], df["log_patents"])
@@ -125,7 +91,6 @@ def analyse_rd_vs_patents(df_B_agg):
     fig.savefig(os.path.join(RESULTS_DIR, "fig1_rd_vs_patents_raw.png"), dpi=150)
     plt.close(fig)
 
-    # Plot 2 — side-by-side regression plots (raw vs log)
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
     sns.regplot(data=df, x="rd_gdp", y="patent_count",
                 scatter_kws={"alpha": 0.6, "s": 40},
@@ -147,17 +112,7 @@ def analyse_rd_vs_patents(df_B_agg):
     fig.savefig(os.path.join(RESULTS_DIR, "fig2_rd_vs_patents_regplot.png"), dpi=150)
     plt.close(fig)
 
-    return df   # return with log_patents column attached
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SECTION 4 — OLS REGRESSION (log_patents ~ rd_gdp + log_population)
-# ─────────────────────────────────────────────────────────────────────────────
-# Fits a multivariate OLS to control for country size (log_population).
-# Model: log(patents+1) = β₀ + β₁·rd_gdp + β₂·log(population)
-# Prints OLS coefficients and saves a residuals-vs-fitted diagnostic plot.
-# Saves:
-#   fig3_ols_residuals.png
+    return df
 
 def run_ols(df_merged):
     df = df_merged.dropna(subset=["rd_gdp", "population", "patent_count"]).copy()
@@ -189,15 +144,6 @@ def run_ols(df_merged):
     print(f"  Residuals — mean: {residuals.mean():.4f}, "
           f"std: {residuals.std():.4f}, "
           f"min/max: {residuals.min():.2f}/{residuals.max():.2f}")
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SECTION 5 — PATENT COUNT vs GDP GROWTH CORRELATION
-# ─────────────────────────────────────────────────────────────────────────────
-# Tests whether higher patent output is associated with faster GDP growth.
-# Runs Pearson and Spearman on both raw and log-transformed patent counts.
-# Saves:
-#   fig4_patents_vs_gdp_raw_log.png
 
 def analyse_patents_vs_gdp(df_B_agg):
     df = df_B_agg.dropna(subset=["gdp_growth"]).copy()
@@ -236,18 +182,6 @@ def analyse_patents_vs_gdp(df_B_agg):
 
     return df
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SECTION 6 — LAG ANALYSIS
-# ─────────────────────────────────────────────────────────────────────────────
-# Tests whether patent output at year T predicts GDP growth at year T+k.
-# Also tests the reverse: does GDP growth at T predict patents at T+1?
-# Lags 1–5 and 7–12 are computed via groupby().shift() so gap years do not
-# accidentally borrow values from non-consecutive periods.
-# Prints a DataFrame of Spearman ρ across lags.
-# Saves:
-#   fig5_lag_spearman_profile.png
-
 def analyse_lag_effects(df_B_agg):
     df = df_B_agg.dropna(subset=["gdp_growth"]).copy()
     df["log_patents"] = np.log1p(df["patent_count"])
@@ -262,7 +196,6 @@ def analyse_lag_effects(df_B_agg):
         df.groupby("country_code", observed=True)["gdp_growth"].shift(1)
     )
 
-    # Spearman table: log_patents_lagN → gdp_growth
     results = []
     for lag in list(range(1, 6)) + list(range(7, 13)):
         col = f"log_patents_lag{lag}"
@@ -276,13 +209,11 @@ def analyse_lag_effects(df_B_agg):
     print("\n[Lag Analysis — log_patents_lagN → gdp_growth]")
     print(df_results.to_string(index=False))
 
-    # Reverse: does GDP growth at T predict patents at T+1?
     tmp_rev = df.dropna(subset=["gdp_growth_lag1", "log_patents"])
     r_rev, p_rev = spearmanr(tmp_rev["gdp_growth_lag1"], tmp_rev["log_patents"])
     print(f"\n  Reverse lag (gdp_growth_lag1 → log_patents): "
           f"rho={r_rev:.4f}, p={p_rev:.4f}")
 
-    # RD group check (high vs low R&D)
     df["rd_group"] = df["rd_gdp"].apply(lambda x: "High_RnD" if x >= 1.0 else "Low_RnD")
     print("\n  By R&D group (lag=1):")
     for group in ["High_RnD", "Low_RnD"]:
@@ -290,7 +221,6 @@ def analyse_lag_effects(df_B_agg):
         r, p = spearmanr(sub["log_patents_lag1"], sub["gdp_growth"])
         print(f"    {group}: rho={r:.4f}, p={p:.4f}, n={len(sub)}")
 
-    # Plot: Spearman ρ profile across lags
     fig, ax = plt.subplots(figsize=(9, 4))
     ax.plot(df_results["lag"], df_results["spearman_r"],
             marker="o", color="steelblue", linewidth=2)
@@ -303,7 +233,6 @@ def analyse_lag_effects(df_B_agg):
     fig.savefig(os.path.join(RESULTS_DIR, "fig5_lag_spearman_profile.png"), dpi=150)
     plt.close(fig)
 
-    # R&D lag stability table (lag 0–5)
     results2 = []
     for lag in range(6):
         if lag == 0:
@@ -318,24 +247,7 @@ def analyse_lag_effects(df_B_agg):
     print("\n[R&D → log_patents stability across lags 0–5]")
     print(pd.DataFrame(results2).to_string(index=False))
 
-    return df   # extended df with lag columns
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SECTION 7 — EFFICIENCY CALCULATIONS & RANKING
-# ─────────────────────────────────────────────────────────────────────────────
-# Filters the dataset to country-years that meet minimum data-quality thresholds
-# (enough patents, inventors, R&D spend, and population) to avoid anomalous
-# efficiency ratios from very small numbers.
-#
-# Efficiency_1 = (patent_count / (rd_gdp × inventor_count)) × 10⁶
-#   Measures how many patents are produced per unit of combined R&D intensity
-#   and inventor workforce.
-#
-# Efficiency_2 = (gdp_growth / (patent_count / population)) × 10⁶
-#   Measures how much GDP growth is associated with each patent per capita.
-#
-# Prints top-10 rankings for both efficiency metrics.
+    return df
 
 def compute_efficiencies(df_B_agg):
     df = df_B_agg[
@@ -378,19 +290,6 @@ def compute_efficiencies(df_B_agg):
 
     return df
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SECTION 8 — HIGH-INCOME vs EMERGING COMPARISON
-# ─────────────────────────────────────────────────────────────────────────────
-# Labels each country-year as "High Income", "Emerging", or "Other" using the
-# lists defined in CONFIG (World Bank / IMF sourced).
-# Plots mean Efficiency_1 and Efficiency_2 over time for each group, and
-# produces a scatter of R&D spend vs patent output by group.
-# Runs linear regression on each efficiency time series to detect trends.
-# Saves:
-#   fig6_efficiency_over_time.png
-#   fig7_rd_vs_patents_by_group.png
-
 def compare_income_groups(df_filtered):
     def assign_group(code):
         if code in HIGH_INCOME:
@@ -411,7 +310,6 @@ def compare_income_groups(df_filtered):
     hi = yearly[yearly["group"] == "High Income"]
     em = yearly[yearly["group"] == "Emerging"]
 
-    # Plot 6 — efficiency over time
     fig, axes = plt.subplots(1, 2, figsize=(13, 4))
     for ax, col, title in zip(axes,
                                ["Efficiency_1", "Efficiency_2"],
@@ -428,7 +326,6 @@ def compare_income_groups(df_filtered):
     fig.savefig(os.path.join(RESULTS_DIR, "fig6_efficiency_over_time.png"), dpi=150)
     plt.close(fig)
 
-    # Linear trend test on each series
     print("\n[Efficiency Trends — linear regression on year]")
     for group_name, gdf in [("High Income", hi), ("Emerging", em)]:
         for col in ["Efficiency_1", "Efficiency_2"]:
@@ -436,7 +333,6 @@ def compare_income_groups(df_filtered):
             print(f"  {group_name} | {col} | slope={slope:.4f} | "
                   f"p={p:.3f} | R²={r**2:.3f}")
 
-    # Plot 7 — R&D vs patents scatter by group
     hi_df = df[df["group"] == "High Income"].dropna(subset=["rd_gdp", "patent_count"])
     em_df = df[df["group"] == "Emerging"].dropna(subset=["rd_gdp", "patent_count"])
 
@@ -455,15 +351,6 @@ def compare_income_groups(df_filtered):
     plt.close(fig)
 
     return df, hi_df, em_df
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SECTION 9 — INNOVATION EFFICIENCY PER DOLLAR (EMERGING vs HIGH-INCOME)
-# ─────────────────────────────────────────────────────────────────────────────
-# Normalises Efficiency_1 by rd_gdp to get patents produced per unit of R&D
-# investment. Box plots compare the distribution between income groups.
-# Saves:
-#   fig8_efficiency_per_rd_boxplot.png
 
 def compare_efficiency_per_dollar(df_with_groups):
     df = df_with_groups.copy()
@@ -504,22 +391,9 @@ def compare_efficiency_per_dollar(df_with_groups):
     fig.savefig(os.path.join(RESULTS_DIR, "fig8_efficiency_per_rd_boxplot.png"), dpi=150)
     plt.close(fig)
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SECTION 10 — PLATEAU DETECTION (R&D threshold analysis)
-# ─────────────────────────────────────────────────────────────────────────────
-# Bins rd_gdp into deciles and plots mean patent count per bin for each income
-# group, looking for a flattening (plateau) at high R&D levels.
-# Fits a logarithmic curve (a·ln(x) + b) to high-income data to model the
-# diminishing returns in patent production as R&D intensity increases.
-# Saves:
-#   fig9_plateau_detection.png
-#   fig10_log_curve_fit_high_income.png
-
 def detect_plateau(df_with_groups):
     df = df_with_groups.copy()
 
-    # Bin by R&D decile
     df["rd_bin"] = pd.qcut(df["rd_gdp"].dropna(), q=10, duplicates="drop")
     threshold_df = (
         df[df["group"] != "Other"]
@@ -544,7 +418,6 @@ def detect_plateau(df_with_groups):
     fig.savefig(os.path.join(RESULTS_DIR, "fig9_plateau_detection.png"), dpi=150)
     plt.close(fig)
 
-    # Log curve fit on high-income data
     def log_model(x, a, b):
         return a * np.log(x) + b
 
@@ -578,44 +451,32 @@ def detect_plateau(df_with_groups):
     except RuntimeError as e:
         print(f"\n[Log curve fit] Optimisation failed: {e}")
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# MAIN
-# ─────────────────────────────────────────────────────────────────────────────
-
 def main():
     print("=" * 60)
     print("Running model.py — R&D / Patent / GDP Analysis Pipeline")
     print("=" * 60)
 
-    # 1. Load
     df_A, df_B = load_data()
 
-    # 2. Aggregate
     df_B_agg, df_merged = aggregate_subsets(df_A, df_B)
 
-    # 3. R&D → Patent correlation
     df_B_agg = analyse_rd_vs_patents(df_B_agg)
 
-    # 4. OLS regression
     run_ols(df_merged)
 
-    # 5. Patent → GDP growth
     df_B_agg_gdp = analyse_patents_vs_gdp(df_B_agg)
 
-    # 6. Lag analysis
     analyse_lag_effects(df_B_agg_gdp)
 
-    # 7. Efficiencies
     df_filtered = compute_efficiencies(df_B_agg)
 
-    # 8. Income group comparison
+    # Income group comparison
     df_with_groups, hi_df, em_df = compare_income_groups(df_filtered)
 
-    # 9. Efficiency per dollar
+    # Efficiency per dollar
     compare_efficiency_per_dollar(df_with_groups)
 
-    # 10. Plateau detection
+    # Plateau detection
     detect_plateau(df_with_groups)
 
     print("\n" + "=" * 60)
