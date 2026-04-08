@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Computational Analysis of the Protein Data – A Humble Computational Model for Proteins</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-161264457bf4891e89297d03332937e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">A Humble Computational Model for Proteins</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Index</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./results.html" aria-current="page"> 
+<span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./discussion.html"> 
+<span class="menu-text">Discussion</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#physicochemical-features-by-organism" id="toc-physicochemical-features-by-organism" class="nav-link active" data-scroll-target="#physicochemical-features-by-organism"><span class="header-section-number">1</span> Physicochemical Features by Organism</a></li>
+  <li><a href="#feature-correlation-heatmap" id="toc-feature-correlation-heatmap" class="nav-link" data-scroll-target="#feature-correlation-heatmap"><span class="header-section-number">2</span> Feature Correlation Heatmap</a></li>
+  <li><a href="#top-amino-acid-pairs-by-mutual-information" id="toc-top-amino-acid-pairs-by-mutual-information" class="nav-link" data-scroll-target="#top-amino-acid-pairs-by-mutual-information"><span class="header-section-number">3</span> Top Amino Acid Pairs by Mutual Information</a></li>
+  <li><a href="#allometric-scaling-with-protein-length" id="toc-allometric-scaling-with-protein-length" class="nav-link" data-scroll-target="#allometric-scaling-with-protein-length"><span class="header-section-number">4</span> Allometric Scaling with Protein Length</a>
+  <ul class="collapse">
+  <li><a href="#hydrophobicity" id="toc-hydrophobicity" class="nav-link" data-scroll-target="#hydrophobicity"><span class="header-section-number">4.1</span> Hydrophobicity</a></li>
+  <li><a href="#entropy" id="toc-entropy" class="nav-link" data-scroll-target="#entropy"><span class="header-section-number">4.2</span> Entropy</a></li>
+  </ul></li>
+  <li><a href="#pca-variance" id="toc-pca-variance" class="nav-link" data-scroll-target="#pca-variance"><span class="header-section-number">5</span> PCA Variance</a></li>
+  <li><a href="#pc1-loadings-interpretation" id="toc-pc1-loadings-interpretation" class="nav-link" data-scroll-target="#pc1-loadings-interpretation"><span class="header-section-number">6</span> PC1 Loadings Interpretation</a></li>
+  <li><a href="#pc1-vs-pc2" id="toc-pc1-vs-pc2" class="nav-link" data-scroll-target="#pc1-vs-pc2"><span class="header-section-number">7</span> PC1 vs PC2</a></li>
+  <li><a href="#feature-distribution-comparison" id="toc-feature-distribution-comparison" class="nav-link" data-scroll-target="#feature-distribution-comparison"><span class="header-section-number">8</span> Feature Distribution Comparison</a>
+  <ul class="collapse">
+  <li><a href="#panel-a-hydrophobicity" id="toc-panel-a-hydrophobicity" class="nav-link" data-scroll-target="#panel-a-hydrophobicity"><span class="header-section-number">8.1</span> Panel A (Hydrophobicity):</a></li>
+  <li><a href="#panel-b-entropy" id="toc-panel-b-entropy" class="nav-link" data-scroll-target="#panel-b-entropy"><span class="header-section-number">8.2</span> Panel B (Entropy):</a></li>
+  </ul></li>
+  <li><a href="#statistical-significance" id="toc-statistical-significance" class="nav-link" data-scroll-target="#statistical-significance"><span class="header-section-number">9</span> Statistical Significance</a></li>
+  <li><a href="#physicochemical-property-gradients" id="toc-physicochemical-property-gradients" class="nav-link" data-scroll-target="#physicochemical-property-gradients"><span class="header-section-number">10</span> Physicochemical Property Gradients</a></li>
+  <li><a href="#cluster-quality-silhouette-analysis" id="toc-cluster-quality-silhouette-analysis" class="nav-link" data-scroll-target="#cluster-quality-silhouette-analysis"><span class="header-section-number">11</span> Cluster Quality — Silhouette Analysis</a></li>
+  <li><a href="#extreme-proteins-outlier-analysis" id="toc-extreme-proteins-outlier-analysis" class="nav-link" data-scroll-target="#extreme-proteins-outlier-analysis"><span class="header-section-number">12</span> Extreme Proteins — Outlier Analysis</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Computational Analysis of the Protein Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="physicochemical-features-by-organism" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="physicochemical-features-by-organism"><span class="header-section-number">1</span> Physicochemical Features by Organism</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/feature_summary.png" class="img-fluid figure-img"></p>
+<figcaption>Physiochemical Features</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Sequence Length &amp; Molecular Weight</strong>: All three organisms show similar right-skewed distributions with medians around 400-500 amino acids (~50 kDa), with extreme outliers reaching 15,000-35,000 residues. This reflects: <strong>typical proteome architecture is dominated by moderate-sized proteins</strong>.</p></li>
+<li><p><strong>Hydrophobicity</strong>: Median values cluster near -0.4. This indicates <strong>proteins are slightly hydrophilic overall—optimal for solubility in aqueous cellular environments</strong>. The narrow interquartile range (-0.3 to -0.6) advocates for universal constraints on membrane association and folding stability referenced from further study.</p></li>
+<li><p><strong>Sequence Entropy</strong>: High median values (~4.1-4.2 bits) demonstrate that <strong>proteins across all species maintain high sequence complexity with diverse amino acid usage</strong>, avoiding repetitive or biased compositions.</p></li>
+</ul>
+<p>The striking similarity across Human, Mouse, and Cow indicates that: <strong>fundamental biophysical constraints on protein properties are conserved across ~100 million years of mammalian evolutionary divergence</strong>.</p>
+</section>
+<section id="feature-correlation-heatmap" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="feature-correlation-heatmap"><span class="header-section-number">2</span> Feature Correlation Heatmap</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/features_correlation_heatmap.png" class="img-fluid figure-img"></p>
+<figcaption>Feature Correlation</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Length and molecular weight</strong> show near-perfect correlation (r &gt; 0.9, deeper red), confirming <strong>linear scaling</strong>.</p></li>
+<li><p><strong>Hydrophobicity</strong> correlates <strong>positively with I, L, M, V (orange)</strong> and <strong>negatively with E, K, Q (blue)</strong>. The <strong>negative</strong> correlation arrises as a result of those amino acids being <strong>charged residues of the protein sequence</strong>.</p></li>
+<li><p><strong>Entropy and hydrophobicity</strong> show predominantly <strong>weak correlations</strong> (|r| &lt; 0.4, light colors) <strong>with each other and most amino acid frequencies</strong>. So we decided to use those as independent features on many occasions for this study.</p></li>
+<li><p><strong>The amino acid frequency block</strong> displays mixed positive/negative correlations reflecting sum-to-one constraints rather than biological antagonism.</p></li>
+</ul>
+<p>The sparse correlation structure between most of these features justifies their combined use in modeling.</p>
+<div class="callout callout-style-simple callout-warning no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The diagonal as it appears to have perfect correlation is resultant of cross matching same features on both axes. So while exploring the heatmap, consider compromising the perfectly matched diagonal.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="top-amino-acid-pairs-by-mutual-information" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="top-amino-acid-pairs-by-mutual-information"><span class="header-section-number">3</span> Top Amino Acid Pairs by Mutual Information</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/top_mi_pairs.png" class="img-fluid figure-img"></p>
+<figcaption>Mutual Information</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-important no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Values of 0.5–0.6 bits represent strong statistical dependency—knowing one amino acid is present substantially increases the probability of finding its partner, far exceeding random expectation.</p>
+</div>
+</div>
+</div>
+<p>With 20 amino acids, there are 190 possible unique pairs. Displaying all accross 3 organisms that is <span class="math inline">\(190 * 3\)</span> would obscure the strongest signals. So discuss the top 5 pairs per organism to tackle biological meaningfulness ,non-random associations while maintaining readability.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>All other values can be found in the preserved dataset that was used to generate these plots.</p>
+</div>
+</div>
+</div>
+<ul>
+<li><p><strong>Tryptophan (W)</strong> appears in <strong>4 of 5 top pairs across all organisms</strong>. Note that is the <strong>rarest amino acid</strong> yet shows the strongest co-occurrence patterns. This suggests it occupies specialized structural or functional niches (e.g.- active sites, protein-protein interfaces, or disulfide-adjacent positions: referenced from further study).</p></li>
+<li><p><strong>Cysteine</strong> pairs like C–W and C–M rank highest in cow and human. This reflects their shared roles in <strong>metal binding, redox chemistry, and disulfide bridge formation</strong>.</p></li>
+</ul>
+<p>The same amino acid pairs dominate across all three species with similar MI magnitudes (0.25–0.6 bits) indicates <strong>these are not species-specific adaptations but universal constraints on protein sequence architecture</strong>.</p>
+</section>
+<section id="allometric-scaling-with-protein-length" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="allometric-scaling-with-protein-length"><span class="header-section-number">4</span> Allometric Scaling with Protein Length</h2>
+<section id="hydrophobicity" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="hydrophobicity"><span class="header-section-number">4.1</span> Hydrophobicity</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/allometric_scaling_hydrophobicity.png" class="img-fluid figure-img"></p>
+<figcaption>Allometric Scaling of Hydrophobicity</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>All three organisms exhibit consistent negative slopes (β = -0.20 to -0.31), indicating that longer proteins are systematically less hydrophobic than shorter ones. So this is suggestive of <strong>larger proteins maintaining solubility by reducing hydrophobic residue content</strong>.</p></li>
+<li><p>Low R² values (0.007–0.031) indicate <strong>length contributes to only a little to hydrophobicity variance</strong>. Yet the consistent direction and statistical significance (p &lt; 10⁻¹) confirm this is a real, biologically meaningful trend rather than noise.</p></li>
+</ul>
+<p>So we deduce from further study on top of this results that <strong>larger proteins likely reduce hydrophobicity to prevent aggregation, ensure proper folding kinetics, and maintain cellular solubility— across mammalian proteomes</strong>.</p>
+</section>
+<section id="entropy" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="entropy"><span class="header-section-number">4.2</span> Entropy</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/allometric_scaling_entropy.png" class="img-fluid figure-img"></p>
+<figcaption>Allometric Scaling of Entropy</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Sequence entropy shows minimal dependence on protein length</strong>, with very weak positive slopes (β = 0.01–0.02) across all organisms.</p></li>
+<li><p>R² values of 0.065–0.176 mean length explains only 6.5–17.6% of entropy variance. So <strong>compositional complexity is governed by factors other than protein size</strong>.</p></li>
+<li><p>The hexbin plots reveal extreme concentration at short lengths (&lt;2,000 aa) with entropy values spanning 2.5–4.5 bits, showing that <strong>small proteins exhibit the full spectrum of sequence complexity—from highly repetitive (low entropy) to maximally diverse (high entropy)</strong>.</p></li>
+</ul>
+<p>Evolutionary pressures on sequence diversity operate independently of size constraints. <strong>This contrasts sharply with hydrophobicity</strong>.</p>
+</section>
+</section>
+<section id="pca-variance" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="pca-variance"><span class="header-section-number">5</span> PCA Variance</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/pca_scree_plot.png" class="img-fluid figure-img"></p>
+<figcaption>PCA Variance</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>The scree plot shows that all three species share a strikingly similar pattern:</p>
+<ul>
+<li><p>PC1 alone captures ~16–18% of variance, followed by a steep elbow through PC5, after which each additional component contributes only 2–4%. This rapid decay suggests <strong>the data has a small number of strong biological axes of variation, with the remainder spread diffusely across many weaker components</strong>.</p></li>
+<li><p>The near-perfect overlap of all three curves implies <strong>the dimensionality structure of proteome/sequence composition is highly conserved across mammals</strong>.</p></li>
+</ul></li>
+<li><p>The dotted cumulative curves (right axis) reinforce the above statement: 95% of variance is not reached until PC 18 (Bos taurus), meaning <strong>no single dominant axis exists and the signal is genuinely multi-dimensional</strong>.</p></li>
+</ul>
+<p>This leads to important analytical implication that <strong>retaining only the first few PCs would discard the majority of information</strong>.</p>
+</section>
+<section id="pc1-loadings-interpretation" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="pc1-loadings-interpretation"><span class="header-section-number">6</span> PC1 Loadings Interpretation</h2>
+<p><img src="assets/pc1_loadings_human.png" class="img-fluid" alt="Human"> <img src="assets/pc1_loadings_cow.png" class="img-fluid" alt="Cow"> <img src="assets/pc1_loadings_mouse.png" class="img-fluid" alt="Mouse"></p>
+<ul>
+<li><p><strong>Hydrophobicity</strong> is the <strong>strongest positive contributor to PC1</strong> across all organisms.</p></li>
+<li><p><strong>Hydrophobic amino acids</strong> consistently show positive loadings, suggesting <strong>PC1 captures proteins enriched in non-polar residues</strong>.</p></li>
+<li><p><strong>Charged/polar residues</strong> display negative loadings <em>(check Feature Correlation section for reference)</em>, representing <strong>surface-exposed, soluble protein</strong> characteristics.</p></li>
+<li><p>The loading patterns are remarkably consistent across all three organisms, indicating universal biophysical constraints on protein composition regardless of species.</p></li>
+</ul>
+<p>PC1 effectively separates proteins by their <strong>structural topology &amp; hydrophobic core dominated versus surface-exposed charged residue dominated architectures</strong>.</p>
+</section>
+<section id="pc1-vs-pc2" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="pc1-vs-pc2"><span class="header-section-number">7</span> PC1 vs PC2</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/pc1_pc2_scatter.png" class="img-fluid figure-img"></p>
+<figcaption>PC1-PC2 Scatter</figcaption>
+</figure>
+</div>
+<p>This scatter plot visualizes proteins from the three organisms projected onto the first two principal components derived from PCA. Each point represents a single protein positioned according to its PC1 and PC2 scores. The colored density contours (by kernel density estimation) show regions of highest protein concentration for each organism. Notice:</p>
+<ul>
+<li><p>All three organisms occupy largely the <strong>same region</strong> of PC1-PC2 space, with <strong>no distinct clustering by species</strong>. The density contours substantially overlap, particularly in the central region around PC1=0, PC2=1.</p></li>
+<li><p>The horizontal axis (PC1) represents the “hydrophobicity axis”, accounting for the largest variance in the dataset. Proteins with positive PC1 values are enriched in hydrophobic amino acids, while negative values indicate more hydrophilic compositions.</p></li>
+<li><p>The vertical axis (PC2) represents the “composition axis”, capturing secondary variation related to amino acid composition patterns independent of overall hydrophobicity.</p></li>
+</ul>
+<p>The substantial overlap indicates that despite ~100 million years of evolutionary divergence, mammalian proteins are constrained to similar physicochemical property spaces. The broader dispersion in human and mouse may reflect their larger, <strong>more diverse proteomes</strong> compared to cow, or <strong>potentially differences in annotation completeness</strong> across the data as the sample set was disproportionate by a lot.</p>
+</section>
+<section id="feature-distribution-comparison" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="feature-distribution-comparison"><span class="header-section-number">8</span> Feature Distribution Comparison</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/feature_distribution.png" class="img-fluid figure-img"></p>
+<figcaption>Feature Distribution</figcaption>
+</figure>
+</div>
+<p>This plot displays the probability density distributions of hydrophobicity and entropy — a kernel density estimate showing the relative frequency of proteins with specific feature values.</p>
+<section id="panel-a-hydrophobicity" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="panel-a-hydrophobicity"><span class="header-section-number">8.1</span> Panel A (Hydrophobicity):</h3>
+<ul>
+<li><p>All three organisms show right-skewed distributions with a primary peak around -0.4 to -0.3, indicating most proteins have slightly <strong>negative overall hydrophobicity</strong>.</p></li>
+<li><p>The peaks for all organisms are nearly perfectly aligned, with only minor differences in distribution width.</p></li>
+<li><p>All distributions show a long right tail extending to +2.0, representing the <strong>minority of highly hydrophobic proteins</strong> (likely membrane proteins).</p></li>
+</ul>
+<p>Slightly broader distribution (wider peak), suggests greater hydrophobicity diversity in the cow proteome.</p>
+</section>
+<section id="panel-b-entropy" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="panel-b-entropy"><span class="header-section-number">8.2</span> Panel B (Entropy):</h3>
+<ul>
+<li><p>Extremely narrow, left-skewed distributions with sharp peaks around 4.1-4.2 bits, indicating most proteins have <strong>very similar sequence complexity</strong>.</p></li>
+<li><p>The <strong>near-perfect alignment of entropy peaks</strong> across all three organisms is noticable, with virtually identical modal values.</p></li>
+<li><p>The narrow spread suggests <strong>strong evolutionary constraints on sequence complexity</strong>, likely reflecting optimal balances between functional diversity and structural stability.</p></li>
+</ul>
+<p>We can say this section only reinforced our previous findings as a whole.</p>
+</section>
+</section>
+<section id="statistical-significance" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="statistical-significance"><span class="header-section-number">9</span> Statistical Significance</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/statistical_significance_plot.png" class="img-fluid figure-img"></p>
+<figcaption>Statistical Significance</figcaption>
+</figure>
+</div>
+<p>This analysis determines if protein feature distributions differ genuinely between Human(Hs), Mouse(Mm), and Cow(Bt) correcting for multiple testing to avoid false positives. The Y-axis (-log10(p-value)) measures strength of difference; bars above the red line (α = 0.05) are statistically significant. Ceiling bars (y=300) indicate p ≈ 0 (p &lt; 10^-300), representing extremely strong differences.</p>
+<ul>
+<li><p><strong>Global Tests</strong>: Most features like Length, Weight, most amino acids, differ universally across all three species. Hydrophobicity is only significant in Kruskal-Wallis, suggesting outliers or non-normal distributions drive the difference.</p></li>
+<li><p><strong>Pairwise Drivers</strong>: Length/Weight differ across all organism pairs. Entropy distinguishes Mouse from the Human/Cow cluster, while Hydrophobicity distinguishes Human from Cow specifically.</p></li>
+<li><p>Usage varies by residue; freq_T (Threonine) differs universally, while freq_A (Alanine) and freq_E (Glutamic Acid) are <strong>conserved across all three species</strong>.</p></li>
+</ul>
+<p>This concludes while <strong>general physical properties (size, weight) diverge universally among mammals, compositional features reveal complex evolutionary relationships with some residues conserved and others only species-specific</strong>.</p>
+</section>
+<section id="physicochemical-property-gradients" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="physicochemical-property-gradients"><span class="header-section-number">10</span> Physicochemical Property Gradients</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/tsne_landscape.png" class="img-fluid figure-img"></p>
+<figcaption>t-SNE Projection of Proteins</figcaption>
+</figure>
+</div>
+<p>The 4-panel grid displays the same t-SNE projection, each revealing a different aspect of proteomic organization. t-SNE preserves local structure, placing physicochemically similar proteins near each other in 2D space.</p>
+<ul>
+<li><p><strong>Panel A (Organism)</strong>: All three species — intermix completely with no organism-specific clustering. This evidently indicates: <strong>evolutionary divergence has left no detectable species-specific signature at the global physicochemical level</strong>.</p></li>
+<li><p><strong>Panel B (Hydrophobicity)</strong>: A smooth diagonal gradient runs from hydrophilic (bottom-left, ~−2.5) to hydrophobic (top-right, ~+1.0), with no sharp transitions. <strong>Proteins continuously balance solubility requirements against structural stability</strong> rather than partitioning into discrete classes.</p></li>
+<li><p><strong>Panel C (Entropy)</strong>: High-entropy proteins (upper-left, ~4.25 bits) and low-entropy proteins (periphery, ~2.25 bits) show moderate spatial separation, suggesting <strong>sequence complexity correlates with specific physicochemical regions but is not the primary organizing axis</strong>.</p></li>
+<li><p><strong>Panel D (Molecular Weight)</strong>: Molecular weight is largely independent of the axes captured by t-SNE, suggesting <strong>protein size evolves orthogonally to hydrophobicity and sequence complexity</strong>.</p></li>
+</ul>
+<p>So this deduces <strong>mammalian proteomes occupy a continuous physicochemical manifold governed by universal biophysical constraints across species rather than discrete categories</strong>.</p>
+</section>
+<section id="cluster-quality-silhouette-analysis" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="cluster-quality-silhouette-analysis"><span class="header-section-number">11</span> Cluster Quality — Silhouette Analysis</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/silhouette_analysis.png" class="img-fluid figure-img"></p>
+<figcaption>Silhouette Scores</figcaption>
+</figure>
+</div>
+<p>The bar chart above shows silhouette scores for K-means clustering at k = 2–15. Scores range from −1 (poor) to +1 (excellent); the dashed line at 0.5 marks the conventional threshold for meaningful structure.</p>
+<ul>
+<li>All scores fall far below 0.5, ranging from 0.05 (k = 14–15) to 0.13 (k = 2). Scores decline steadily with increasing k and plateau around 0.05–0.07 beyond k = 7 — adding clusters provides no additional insight. Even the best solution (k = 2, score = 0.13) fails the threshold decisively.</li>
+</ul>
+<p><strong>Interpretation</strong>: Proteins do not naturally partition into discrete physicochemical groups. Categorical labels like “hydrophobic” vs.&nbsp;“hydrophilic” impose artificial structure on what is fundamentally a continuous distribution. This negative result <strong>rules out clustering as an appropriate framework</strong> and points toward <strong>gradient-based or manifold-learning approaches</strong>.</p>
+</section>
+<section id="extreme-proteins-outlier-analysis" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="extreme-proteins-outlier-analysis"><span class="header-section-number">12</span> Extreme Proteins — Outlier Analysis</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/outlier_analysis.png" class="img-fluid figure-img"></p>
+<figcaption>Outlier Proteins</figcaption>
+</figure>
+</div>
+<p>This scatter plot maps all proteins in hydrophobicity–entropy space. The dense central cloud (gray) represents typical proteins; colored points are outliers falling in the top/bottom 1% of both features simultaneously. Dashed lines mark the thresholds.</p>
+<ul>
+<li><p>Most proteins cluster around hydrophobicity ≈ −0.5 to 0.0 and entropy ≈ 3.8–4.2 bits — <strong>moderately hydrophilic with intermediate sequence complexity</strong>.</p></li>
+<li><p><strong>Low hydrophobicity + high entropy</strong> specifying intrinsically disordered and regulatory proteins (transcription factors, signaling proteins) that require conformational flexibility and multiple interaction partners. Low hydrophobicity prevents aggregation despite disorder!</p></li>
+<li><p><strong>High hydrophobicity + low entropy</strong> ones likely membrane proteins and structural components with repetitive motifs (transmembrane helices, collagen repeats). Few proteins reach this extreme.</p></li>
+<li><p><strong>Extremely low hydrophobicity with variable entropy</strong> ones are highly soluble, secreted or cytosolic proteins enriched in charged residues.</p></li>
+<li><p>Very few proteins combine <strong>high hydrophobicity with high entropy</strong>; this combination promotes aggregation and is selected against.</p></li>
+</ul>
+<p>This analysis zooms into the tails of the t-SNE landscape and explains the poor clustering — outliers are extreme points on continuous gradients, not members of separate categories.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,48 @@
+body.index-page .quarto-title-block {
+  background: linear-gradient(135deg, #0a2e1a 0%, #1a6b45 60%, #26a96c 100%);
+  color: #f0ede0;
+  padding: 3rem 2.5rem;
+  border-radius: 12px;
+  margin-bottom: 2.5rem;
+  border: 1px solid rgba(49, 196, 122, 0.25);
+  box-shadow: 0 4px 24px rgba(10, 46, 26, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+body.index-page .quarto-title-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(49,196,122,0.10) 0%, transparent 70%),
+              radial-gradient(ellipse at 80% 20%, rgba(38,169,108,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+body.index-page .quarto-title-block .title {
+  color: #ECE4B7;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+body.index-page .quarto-title-block .subtitle {
+  color: #d4f5e2;        /* fixed: had ## typo in your original */
+  font-size: 1.1rem;
+  font-style: italic;
+  opacity: 0.92;
+  margin-top: 0.4rem;
+}
+
+body.index-page .quarto-title-block .author,
+body.index-page .quarto-title-block .date {
+  color: #fefefe;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin-top: 0.3rem;
+}
+
+body.index-page .quarto-title-block:empty {
+  display: none;
+}
