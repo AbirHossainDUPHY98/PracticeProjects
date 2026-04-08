@@ -3,22 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Practice Projects</title>
-  <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 60px auto; padding: 0 20px; }
-    h1 { font-size: 1.6rem; margin-bottom: 24px; }
-    ul { list-style: none; padding: 0; }
-    li { margin-bottom: 12px; }
-    a { font-size: 1.05rem; color: #1a73e8; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-  </style>
+  <title>Practice Projects — Abir Hossain</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Practice Projects</h1>
-  <ul>
-    <li><a href="ProjectileMotion/index.html">A Model for Projectile Motion Enhanced with Varying Atmospheric Density Data</a></li>
-    <li><a href="BankingMacroeconomic/index.html">An analysis of - Bangladesh's Banking Sector Performance vs. Macroeconomic Indicators</a></li>
-    <li><a href="GDP_perCapita/index.html">GDP per capita of — BD, IND, PAK and Insights</a></li>
-  </ul>
+
+  <header>
+    <h1 class="header-title">Practice Projects</h1>
+    <p class="header-desc">This page links all the project documentations.</p>
+    <span class="header-hint">Click a project to see the dedicated documentation.<br>Click the corresponding <b>PDF Download</b> button to get a portable pdf version.</span>
+  </header>
+
+  <main>
+
+    <div class="project-row">
+      <a class="project-card" href="RnD_Growth/index.html">
+        <div class="card-top">
+          <span class="project-title">Validating the Hypothesis: R&amp;D Budget Converts Into National Growth</span>
+        </div>
+        <div class="card-meta">
+          <span class="tag">Economics &amp; Policy</span>
+          <span class="tag">Statistical Modeling</span>
+          <span class="tag">R&amp;D</span>
+          <span class="tag">Patents</span>
+        </div>
+        <p class="card-desc">A seemingly natural intuition drives the idea behind this study, which tries to find the patterns in multi-dimensional data to seek validation to that idea. Here statistical correlations are measured between - RnD spending and patent output as a measure of productive technical growth - ultimately converting into economic growth for nations.</p>
+      </a>
+      <a class="btn-pdf" href="#" title="Download PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        PDF
+      </a>
+    </div>
+
+    <div class="project-row">
+      <a class="project-card" href="ProteinAnalysis/index.html">
+        <div class="card-top">
+          <span class="project-title">Statistical Correlation Between Structural Properties &amp; Emergent Nature of Proteins</span>
+        </div>
+        <div class="card-meta">
+          <span class="tag">Biochemistry</span>
+          <span class="tag">Computational Methods</span>
+          <span class="tag">Statistical Modeling</span>
+          <span class="tag">Protein</span>
+        </div>
+        <p class="card-desc">This project models functional properties of proteins to their chemical and structural properties. Here 30,000 proteins from 3 different mammalian organisms are compared following the idea of finding some patterns, which might be unforeseen by the naked eye.</p>
+      </a>
+      <a class="btn-pdf" href="#" title="Download PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        PDF
+      </a>
+    </div>
+
+    <div class="project-row">
+      <a class="project-card" href="ProjectileMotion/index.html">
+        <div class="card-top">
+          <span class="project-title">A Model for Projectile Motion Enhanced with Varying Atmospheric Density Data</span>
+        </div>
+        <div class="card-meta">
+          <span class="tag">Physics &amp; Simulation</span>
+          <span class="tag">Computational Methods</span>
+        </div>
+        <p class="card-desc">From programming a standard solution to the ordinary projectile motion equations(2D), this project tries to get the simulation conditions closer to reality. By merging atmospheric density data with the barometric approximation of density, an atmospheric density model was created. That was later used to simulate the projectile motion under more realistic conditions.</p>
+      </a>
+      <a class="btn-pdf" href="#" title="Download PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        PDF
+      </a>
+    </div>
+
+    <div class="project-row">
+      <a class="project-card" href="BankingMacroeconomic/index.html">
+        <div class="card-top">
+          <span class="project-title">Bangladesh's Banking Sector Performance vs. Macroeconomic Indicators</span>
+        </div>
+        <div class="card-meta">
+          <span class="tag">Finance &amp; Macroeconomics</span>
+          <span class="tag">Bangladesh</span>
+          <span class="tag">EDA</span>
+        </div>
+        <p class="card-desc">Banladesh is a developing nation, of which the economic growth is marked as "promising" by many. This study took a deeper dive into the banking performance data representing the financial policies and put it against the promising economic data, in hopes of finding anomalies - which is realized also by a lot of the locals.</p>
+      </a>
+      <a class="btn-pdf" href="#" title="Download PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        PDF
+      </a>
+    </div>
+
+    <div class="project-row">
+      <a class="project-card" href="GDP_perCapita/index.html">
+        <div class="card-top">
+          <span class="project-title">GDP per Capita of Bangladesh, India, Pakistan — Comparative Insights</span>
+        </div>
+        <div class="card-meta">
+          <span class="tag">Economics</span>
+          <span class="tag">EDA</EDA>
+        </div>
+        <p class="card-desc">This is a report that displays the economic data for the 3 south-east asian nations, and does a comparative analysis.</p>
+      </a>
+      <a class="btn-pdf" href="#" title="Download PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        PDF
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Abir Hossain — Practice Projects Repository</p>
+    <p>GitHub Pages</p>
+  </footer>
+
 </body>
 </html>

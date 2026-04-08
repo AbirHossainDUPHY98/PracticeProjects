@@ -1,0 +1,252 @@
+.navbar-brand {
+  text-transform: none !important;
+}
+
+body.index-page .quarto-title-block {
+  background-color: #fff;
+  border-left: 7.5px solid #EB6864;
+  border-bottom: 1px solid #f0dedd;
+  padding: 2.6rem 2.2rem 2rem;
+  margin-bottom: 2.5rem;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+
+body.index-page .quarto-title-block .title {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  color: #1a1a1a;
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.45rem;
+}
+
+body.index-page .quarto-title-block .subtitle {
+  color: #EB6864;
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  opacity: 1;
+}
+
+body.index-page .quarto-title-block .author,
+body.index-page .quarto-title-block .date {
+  color: #777;
+  font-size: 0.88rem;
+  margin-top: 0.25rem;
+}
+
+body.index-page .quarto-title-block:empty {
+  display: none;
+}
+
+body.index-page .quarto-title-block .keywords span,
+body.index-page .quarto-title-block .quarto-categories .quarto-category {
+  display: inline-block;
+  font-size: 0.75rem;
+  background: #fdf0ef;
+  color: #c0423e;
+  border: 1px solid #f5c6c5;
+  border-radius: 3px;
+  padding: 2px 9px;
+  margin: 0.4rem 0.25rem 0 0;
+  letter-spacing: 0.02em;
+}
+
+.navbar {
+  border-bottom: 2px solid #EB6864 !important;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #1a1a1a !important;
+}
+
+.navbar .nav-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #444 !important;
+  transition: color 0.15s;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #EB6864 !important;
+}
+
+.quarto-title h1.title {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  border-bottom: 2px solid #EB6864;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  color: #1a1a1a;
+}
+
+h2 {
+  border-bottom: 1px solid #f0dedd;
+  padding-bottom: 0.3rem;
+  margin-top: 2.2rem;
+}
+
+h3 {
+  color: #c0423e;
+}
+
+#TOC,
+.sidebar nav[role="doc-toc"] {
+  border-left: 3px solid #f0dedd;
+  padding-left: 1rem;
+  font-size: 0.83rem;
+}
+
+#TOC .active,
+.sidebar nav[role="doc-toc"] a.active {
+  color: #EB6864 !important;
+  font-weight: 600;
+  border-left: 2px solid #EB6864;
+  margin-left: -1.05rem;
+  padding-left: 0.85rem;
+}
+
+#TOC a,
+.sidebar nav[role="doc-toc"] a {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+#TOC a:hover,
+.sidebar nav[role="doc-toc"] a:hover {
+  color: #EB6864;
+}
+
+body {
+  color: #333;
+  line-height: 1.75;
+}
+
+a {
+  color: #EB6864;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #c0423e;
+  text-decoration: underline;
+}
+
+.table thead th {
+  background-color: #fdf0ef;
+  color: #1a1a1a;
+  border-bottom: 2px solid #EB6864;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #fffaf9;
+}
+
+.table td, .table th {
+  border-color: #f0dedd;
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+.callout {
+  border-radius: 4px;
+  border-left-width: 4px;
+  font-size: 0.92rem;
+}
+
+.callout-note {
+  border-left-color: #EB6864;
+  background-color: #fffaf9;
+}
+
+.callout-important {
+  border-left-color: #c0423e;
+  background-color: #fdf0ef;
+}
+
+.callout-tip {
+  border-left-color: #22B24C;
+  background-color: #f4fbf6;
+}
+
+.callout-warning {
+  border-left-color: #F5E625;
+  background-color: #fffef0;
+}
+
+pre.sourceCode,
+div.sourceCode {
+  background-color: #fafafa;
+  border: 1px solid #f0dedd;
+  border-left: 3px solid #EB6864;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.84rem;
+}
+
+code {
+  color: #c0423e;
+  background-color: #fdf0ef;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.87em;
+}
+
+pre code {
+  color: inherit;
+  background: none;
+  padding: 0;
+}
+
+figure {
+  margin: 2rem 0;
+}
+
+figcaption,
+.figure-caption,
+p.caption {
+  font-size: 0.82rem;
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5rem;
+  border-top: 1px solid #f0dedd;
+  padding-top: 0.4rem;
+}
+
+figure img {
+  border-radius: 4px;
+  border: 1px solid #f0dedd;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #f0dedd;
+  margin: 2.5rem 0;
+}
+
+.nav-footer {
+  border-top: 2px solid #EB6864;
+  font-size: 0.8rem;
+  color: #999;
+  padding-top: 1rem;
+}
+

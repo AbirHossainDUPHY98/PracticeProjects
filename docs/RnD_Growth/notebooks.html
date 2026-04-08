@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Abir Hossain">
-<meta name="dcterms.date" content="2026-03-12">
 
-<title>GDP per Capita: Bangladesh, India &amp; Pakistan – GDP per Capita: Bangladesh, India &amp; Pakistan (2005–2025)</title>
+<title>notebooks – RnD Spending to Patent Output to Growth</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -42,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-18a7767df205e7a7eb3b203efb656965.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ccea6ab6a2610951d00c572b6b65b7a5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -83,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">GDP per Capita: Bangladesh, India &amp; Pakistan (2005–2025)</span>
+    <span class="navbar-title">RnD Spending to Patent Output to Growth</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -93,8 +91,24 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Index</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./notebooks.html" aria-current="page"> 
+<span class="menu-text">Notebooks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./analysis.html"> 
+<span class="menu-text">Analysis and Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./discussion.html"> 
+<span class="menu-text">Discussion</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -112,165 +126,104 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
-  <li><a href="#why-this-project" id="toc-why-this-project" class="nav-link" data-scroll-target="#why-this-project">Why This Project</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#etl-notebooks" id="toc-etl-notebooks" class="nav-link" data-scroll-target="#etl-notebooks">ETL Notebooks</a>
   <ul class="collapse">
-  <li><a href="#data-acquisition-download_data.py" id="toc-data-acquisition-download_data.py" class="nav-link" data-scroll-target="#data-acquisition-download_data.py">1. Data Acquisition (<code>download_data.py</code>)</a></li>
-  <li><a href="#data-cleaning-clean.py" id="toc-data-cleaning-clean.py" class="nav-link" data-scroll-target="#data-cleaning-clean.py">2. Data Cleaning (<code>clean.py</code>)</a></li>
-  <li><a href="#visualization-plot.py" id="toc-visualization-plot.py" class="nav-link" data-scroll-target="#visualization-plot.py">3. Visualization (<code>plot.py</code>)</a></li>
-  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure">Project Structure</a></li>
+  <li><a href="#extraction-extraction_validation.ipynb" id="toc-extraction-extraction_validation.ipynb" class="nav-link" data-scroll-target="#extraction-extraction_validation.ipynb">Extraction — <code>extraction_validation.ipynb</code></a></li>
+  <li><a href="#transformation-transformation_validation.ipynb" id="toc-transformation-transformation_validation.ipynb" class="nav-link" data-scroll-target="#transformation-transformation_validation.ipynb">Transformation — <code>transformation_validation.ipynb</code></a></li>
+  <li><a href="#load-load.ipynb" id="toc-load-load.ipynb" class="nav-link" data-scroll-target="#load-load.ipynb">Load — <code>load.ipynb</code></a></li>
   </ul></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <li><a href="#analysis-notebook" id="toc-analysis-notebook" class="nav-link" data-scroll-target="#analysis-notebook">Analysis Notebook</a>
   <ul class="collapse">
-  <li><a href="#gdp-per-capita-trends-20052025" id="toc-gdp-per-capita-trends-20052025" class="nav-link" data-scroll-target="#gdp-per-capita-trends-20052025">GDP per Capita Trends (2005–2025)</a></li>
+  <li><a href="#analysis_test.ipynb" id="toc-analysis_test.ipynb" class="nav-link" data-scroll-target="#analysis_test.ipynb"><code>analysis_test.ipynb</code></a></li>
   </ul></li>
-  <li><a href="#insights" id="toc-insights" class="nav-link" data-scroll-target="#insights">Insights</a></li>
-  <li><a href="#authors-note" id="toc-authors-note" class="nav-link" data-scroll-target="#authors-note">Author’s note</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#chunked-reads" id="toc-chunked-reads" class="nav-link" data-scroll-target="#chunked-reads">Chunked Reads</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">GDP per Capita: Bangladesh, India &amp; Pakistan</h1>
-<p class="subtitle lead">A Comparative Analysis (2005–2025)</p>
+
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Jupyter notebooks served as a validation layer for the whole pipeline in this project,ensuring that every logical step was verified separately before being included to production scripts. In addition to assuring that the final scripts were based on previously validated logic and results, this dual-track method produced a documented audit trail of the development process.</p>
+<div class="callout callout-style-simple callout-caution no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Abir Hossain </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">March 12, 2026</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="executive-summary" class="level2">
-<h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
-<p>This report presents a comparative analysis of GDP per capita (US $) trends across Bangladesh, India, and Pakistan from 2005 to 2025. The data was sourced from World Bank. The analysis tracks economic growth trajectories of three major South Asian economies over two decades. The findings reveal diverging growth patterns, with India maintaining the highest GDP per capita throughout the period, while Bangladesh demonstrates a notable acceleration in recent years, even overtaking India and maintaining lead for a window of 5 years.</p>
+<div class="callout-body-container">
+<p>Check the actual notebooks for reference.</p>
+</div>
+</div>
+</div>
+<hr>
 </section>
-<section id="why-this-project" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-project">Why This Project</h2>
-<p>This is the first project that I did, intended as a practice exercise towards computational science and data engineering workflows.</p>
-<p>The scope of practice was:</p>
-<ul>
-<li><p><strong>Python Scripting:</strong> – using Python scripts for:</p>
-<ul>
-<li>Extracting data</li>
-<li>Cleaning data and saving it in a usable format</li>
-<li>Performing analytics</li>
-<li>Creating visualizations of the results</li>
-</ul></li>
-<li><p><strong>Documentation:</strong> – using documentation tools for academic or enterprise style documentation and presentations:</p>
-<ul>
-<li>Quarto</li>
-<li>Typst</li>
-</ul></li>
-</ul>
+<section id="etl-notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="etl-notebooks">ETL Notebooks</h2>
+<section id="extraction-extraction_validation.ipynb" class="level3">
+<h3 class="anchored" data-anchor-id="extraction-extraction_validation.ipynb">Extraction — <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/RnD_Growth/notebooks/extraction_validation.ipynb"><code>extraction_validation.ipynb</code></a></h3>
+<p>This notebook covers the design and testing of the data extraction pipeline. Its workflow proceeds as follows:</p>
+<p><strong>World Bank:</strong> Before a dependable implementation was developed, several iterations of the API request were tried. At first, testing was restricted to two indicators for a shorter range of years. The entire indicator set and all accessible years were added to the extraction template after the pattern was verified.</p>
+<p><strong>OECD:</strong> The OECD Data Explorer’s URL generator was used to produce a valid API endpoint. The trial-and-error process and the final URL structure are documented and explained within the notebook.</p>
+<p><strong>USPTO:</strong> The patent and inventor files are substantial in size — roughly 2.1 GB combined, with the inventor dataset alone containing approximately 23.7 million rows. Both files were downloaded in chunked batches from the public S3 source. Chunk size was determined empirically: sizes were tested against local RAM utilization, and a value of <strong>500,000 rows per chunk</strong> was selected as the safe upper bound for the used local system.</p>
+<hr>
 </section>
-<section id="methodology" class="level2">
-<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>The project followed a simple workflow, each handled by a dedicated Python script.</p>
-<section id="data-acquisition-download_data.py" class="level3">
-<h3 class="anchored" data-anchor-id="data-acquisition-download_data.py">1. Data Acquisition (<a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/GDP_perCapita_BD-IND-PAK/download_data.py"><code>download_data.py</code></a>)</h3>
-<p>Data was downloaded programmatically from the World Bank API using the <em>requests</em> library, covering GDP per capita (current US$) for Bangladesh, India, and Pakistan from 2005 to 2025.</p>
+<section id="transformation-transformation_validation.ipynb" class="level3">
+<h3 class="anchored" data-anchor-id="transformation-transformation_validation.ipynb">Transformation — <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/RnD_Growth/notebooks/transformation_validation.ipynb"><code>transformation_validation.ipynb</code></a></h3>
+<p>This notebook documents all data quality checks, format corrections, and join logic applied to the raw datasets.</p>
+<p><strong>World Bank:</strong> Initial checks covered data types, null patterns, and country code formatting. Individual country codes were declared and validated within the notebook.</p>
+<p><strong>OECD:</strong> The full MSTI dataset was inspected and filtered to retain only the four indicators selected for this study. The notebook reports the complete indicator list present in the raw data.</p>
+<p><strong>USPTO:</strong> In accordance with the extraction stage, all processing was done in segments. The processed row counts for each file are displayed in the cell outputs: 23,753,556 rows from <code>g_inventor_disambiguated.tsv</code> and 9,361,444 rows from <code>g_patent.tsv</code>.</p>
+<p>A data type discrepancy between the patent and inventor files that required to be fixed before merging was verified by quality tests. Another significant problem discovered was that the inventor file only had a <em>location_id</em> field rather than a nation or country code column. In order to resolve location identifiers to country names, a third file, <code>g_location_disambiguated.tsv</code>, had to be downloaded. In order to be consistent with the World Bank and OECD datasets, country codes that were originally in <strong>ISO alpha-2</strong> format were changed to <strong>alpha-3</strong> format after the join.</p>
+<p>The notebook concludes with a section documenting all merging operations and the resulting analytical subsets.</p>
+<hr>
 </section>
-<section id="data-cleaning-clean.py" class="level3">
-<h3 class="anchored" data-anchor-id="data-cleaning-clean.py">2. Data Cleaning (<a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/GDP_perCapita_BD-IND-PAK/clean.py"><code>clean.py</code></a>)</h3>
-<p>The raw data was cleaned and restructured into a tidy usable format - handling missing values, renaming columns, dropping whitespaces and other anomalous signs and formats, then saving the output as a CSV file ready for analysis.</p>
-</section>
-<section id="visualization-plot.py" class="level3">
-<h3 class="anchored" data-anchor-id="visualization-plot.py">3. Visualization (<a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/GDP_perCapita_BD-IND-PAK/plot.py"><code>plot.py</code></a>)</h3>
-<p>The cleaned data was plotted using <code>matplotlib</code> and <code>seaborn</code>, producing a multi-line chart comparing GDP per capita(US $) trends across the three countries, with countries represented by separate colored line over the full time period.</p>
-</section>
-<section id="project-structure" class="level3">
-<h3 class="anchored" data-anchor-id="project-structure">Project Structure</h3>
-<pre><code>GDP_perCapita_BD-IND-PAK/
-├── download_data.py
-├── clean.py
-├── plot.py
-├── GDP_per_capita_BD_IND_PAK_2005_2025.csv
-├── GDP_per_capita_BD_IND_PAK_2005_2025_clean.csv</code></pre>
+<section id="load-load.ipynb" class="level3">
+<h3 class="anchored" data-anchor-id="load-load.ipynb">Load — <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/RnD_Growth/notebooks/load.ipynb"><code>load.ipynb</code></a></h3>
+<p>The load stage required no complex transformation. Its primary function was converting the cleaned and merged <code>.csv</code> files into <code>.parquet</code> format for efficient downstream querying. Both <code>.csv</code> and <code>.parquet</code> versions of all datasets were saved in the local <code>processed/</code> directory.</p>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>All the scripts and the data files can be found <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/tree/main/GDP_perCapita_BD-IND-PAK"><code>here</code></a>.</p>
+<p>The processed data files were not uploaded. Check the <strong>PS</strong>(lowest level) section in the <a href="https://abirhossainduphy98.github.io/PracticeProjects/RnD_Growth/methodology.html">Methodology</a> page.</p>
 </div>
 </div>
 </div>
+<hr>
 </section>
 </section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
-<section id="gdp-per-capita-trends-20052025" class="level3">
-<h3 class="anchored" data-anchor-id="gdp-per-capita-trends-20052025">GDP per Capita Trends (2005–2025)</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="GDP_per_capita_plot.png" class="img-fluid figure-img"></p>
-<figcaption>GDP per Capita – Bangladesh, India &amp; Pakistan</figcaption>
-</figure>
-</div>
-</section>
-</section>
-<section id="insights" class="level2">
-<h2 class="anchored" data-anchor-id="insights">Insights</h2>
-<p>As can be seen from the plot</p>
-<ul>
-<li><p><strong>India</strong> consistently maintained the highest GDP per capita among the three nations overall.</p></li>
-<li><p><strong>Bangladesh</strong> showed a remarkable acceleration in growth since 2015, briefly overtaking India from roughly 2018 to 2023, maintaining a lead for approximately five years – a significant achievement for a country considered to be one of the lower lincome ones, liberated only in 1971 with a very dense population.</p></li>
-<li><p><strong>Pakistan</strong> showed comparatively slower and more stagnant growth over the two decades. Pakistan’s internal and external conflicts with world leaders and surrounding nations evidently plays a role in that.</p></li>
-<li><p>The diverging trajectories suggest differing economic policies, export performance, and development strategies across the three nations.</p></li>
-</ul>
-</section>
-<section id="authors-note" class="level2">
-<h2 class="anchored" data-anchor-id="authors-note">Author’s note</h2>
-<p>This was very much of an introductory project that was designed to familiarize myself with:</p>
-<ul>
-<li>Practical usage of <em>python scripting</em> in various fields.</li>
-<li>The process of completing a project by starting from sourcing data all the way to finding indicative insights from those.</li>
-<li>Using documentation tools like <strong>Quarto</strong> and <strong>Typst</strong> to write different types of documentation like this one and a standard scientific-paper-style pdf report, styling and organizing tools.</li>
-</ul>
-<div class="callout callout-style-simple callout-important no-icon">
+<section id="analysis-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-notebook">Analysis Notebook</h2>
+<section id="analysis_test.ipynb" class="level3">
+<h3 class="anchored" data-anchor-id="analysis_test.ipynb"><a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/RnD_Growth/notebooks/analysis_test.ipynb"><code>analysis_test.ipynb</code></a></h3>
+<p>The project’s analytical center is this notebook. During the analysis stage, it documents all exploratory concepts, statistical tests, interim results, and interpretation choices. Each of the <strong>primary</strong> or <strong>secondary</strong> research questions stated in the <a href="https://abirhossainduphy98.github.io/PracticeProjects/RnD_Growth/index.html"><code>Index</code></a> page corresponds to each of the eight sections that make up the notebook.</p>
+<p>The conclusions from this notebook, which were ultimately implemented by the <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects/blob/main/RnD_Growth/models/model.py"><code>model.py</code></a> script, are summarized on the dedicated <a href="https://abirhossainduphy98.github.io/PracticeProjects/RnD_Growth/analysis.html"><code>Analysis and Results</code></a> page.</p>
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>I humbly ask the reader to not critique this work by putting it under the same category as <strong>impactful data science research respected by the community</strong>. For a deeper rooted work, check out my <a href="https://github.com/AbirHossainDUPHY98/PracticeProjects">PracticeProjects</a> repo, where there are some other “practice projects” I had done to develop the necessary skillsets for this workflow: which are progressively bigger and more complex. Other original research ideas and development projects are currently in persuit.</p>
-</div>
-</div>
-</div>
-<p>This work has been a good introductory project for me which has lead me to persue newer goals and ideas.</p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>During this phase, a major problem with the quality of the data was discovered: <em>GDP</em> or <em>GDP per capita</em> was left out of the initial indicator extraction. To independently categorize nations by income level ensuring completeness for this analytical research, this indicator would have been required.</p>
 <ul>
-<li>World Bank. <em>World Development Indicators: GDP per capita (current US$)</em>. Retrieved from <a href="https://data.worldbank.org" class="uri">https://data.worldbank.org</a></li>
+<li><p>The <a href="https://abirhossainduphy98.github.io/PracticeProjects/RnD_Growth/analysis.html"><code>Analysis and Results</code></a> page describes the workaround used in the secondary analysis. Also a hands on temporal snapshot can also be found in the notebook.</p></li>
+<li><p>The reasons behind this mismanagement and decision to not download the data again are explained in the <a href="https://abirhossainduphy98.github.io/PracticeProjects/RnD_Growth/discussion.html"><code>Discussion</code></a> page.</p></li>
 </ul>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="chunked-reads" class="level2">
+<h2 class="anchored" data-anchor-id="chunked-reads">Chunked Reads</h2>
+<p>Instead of fully loading into RAM, large USPTO files are processed in predetermined 500,000-row batches.To ensure consistent RAM utilization, this consistent chunking technique is used for extraction, transformation, and analysis.The process operates dependably without manual monitoring or performance anxiety thanks to the removal of memory crashes and resource limitations.</p>
 
 
 </section>

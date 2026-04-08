@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>analysis – RnD Spending to Patent Output to Growth</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ccea6ab6a2610951d00c572b6b65b7a5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">RnD Spending to Patent Output to Growth</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Index</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./notebooks.html"> 
+<span class="menu-text">Notebooks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./analysis.html" aria-current="page"> 
+<span class="menu-text">Analysis and Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./discussion.html"> 
+<span class="menu-text">Discussion</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#primary-questions" id="toc-primary-questions" class="nav-link active" data-scroll-target="#primary-questions">Primary Questions</a>
+  <ul class="collapse">
+  <li><a href="#does-national-rd-spending-correlate-with-patent-output" id="toc-does-national-rd-spending-correlate-with-patent-output" class="nav-link" data-scroll-target="#does-national-rd-spending-correlate-with-patent-output">1. Does national R&amp;D spending correlate with patent output?</a></li>
+  <li><a href="#does-patent-output-correlate-with-gdp-growth" id="toc-does-patent-output-correlate-with-gdp-growth" class="nav-link" data-scroll-target="#does-patent-output-correlate-with-gdp-growth">2. Does patent output correlate with GDP growth?</a></li>
+  <li><a href="#is-there-a-lag-effect" id="toc-is-there-a-lag-effect" class="nav-link" data-scroll-target="#is-there-a-lag-effect">3. Is there a lag effect?</a></li>
+  </ul></li>
+  <li><a href="#secondary-questions" id="toc-secondary-questions" class="nav-link" data-scroll-target="#secondary-questions">Secondary Questions</a>
+  <ul class="collapse">
+  <li><a href="#which-countries-convert-rd-investment-into-patents-most-efficiently" id="toc-which-countries-convert-rd-investment-into-patents-most-efficiently" class="nav-link" data-scroll-target="#which-countries-convert-rd-investment-into-patents-most-efficiently">4. Which countries convert R&amp;D investment into patents most efficiently?</a></li>
+  <li><a href="#which-countries-convert-patent-output-into-gdp-growth-most-efficiently" id="toc-which-countries-convert-patent-output-into-gdp-growth-most-efficiently" class="nav-link" data-scroll-target="#which-countries-convert-patent-output-into-gdp-growth-most-efficiently">5. Which countries convert patent output into GDP growth most efficiently?</a></li>
+  <li><a href="#is-innovation-productivity-saturating-in-high-income-countries" id="toc-is-innovation-productivity-saturating-in-high-income-countries" class="nav-link" data-scroll-target="#is-innovation-productivity-saturating-in-high-income-countries">6. Is innovation productivity saturating in high-income countries?</a></li>
+  <li><a href="#are-emerging-economies-more-innovation-efficient-per-dollar-spent" id="toc-are-emerging-economies-more-innovation-efficient-per-dollar-spent" class="nav-link" data-scroll-target="#are-emerging-economies-more-innovation-efficient-per-dollar-spent">7. Are emerging economies more innovation-efficient per dollar spent?</a></li>
+  <li><a href="#does-patent-volume-plateau-beyond-certain-rd-spending-thresholds" id="toc-does-patent-volume-plateau-beyond-certain-rd-spending-thresholds" class="nav-link" data-scroll-target="#does-patent-volume-plateau-beyond-certain-rd-spending-thresholds">8. Does patent volume plateau beyond certain R&amp;D spending thresholds?</a></li>
+  </ul></li>
+  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks">Concluding Remarks</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="primary-questions" class="level2">
+<h2 class="anchored" data-anchor-id="primary-questions">Primary Questions</h2>
+<section id="does-national-rd-spending-correlate-with-patent-output" class="level3">
+<h3 class="anchored" data-anchor-id="does-national-rd-spending-correlate-with-patent-output">1. Does national R&amp;D spending correlate with patent output?</h3>
+<p>Before any treatment is made, the relationship’s shape can be seen in an initial scatter plot of raw R&amp;D spending (% of GDP) against the total number of patents.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/fig1_rd_vs_patents_raw.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>R&amp;D spending (% of GDP) vs.&nbsp;raw patent count across all country-year observations. The distribution is heavily right-skewed, with most countries clustered near the origin and a small number of high-investment nations producing disproportionately large patent volumes.</figcaption>
+</figure>
+</div>
+<p>The Pearson correlation on raw values yields a moderate positive association:</p>
+<p><span class="math display">\[r = 0.355, \quad p &lt; 0.001\]</span></p>
+<p>However, this understates the true strength of the relationship. The Spearman rank correlation — robust to outliers and distributional skew — is substantially higher:</p>
+<p><span class="math display">\[\rho = 0.808, \quad p &lt; 0.001\]</span></p>
+<p>The large gap between the two statistics (Δ = 0.453) indicates that the relationship is <strong>monotonic but non-linear</strong>: as R&amp;D spending increases, patent output increases at an accelerating rather than a constant rate. Patent counts are highly right-skewed, with most countries producing relatively few patents while a handful of high-investment nations produce orders of magnitude more.</p>
+<p>Applying a log-transformation to patent counts (<span class="math inline">\(\log(\text{patents} + 1)\)</span>) substantially improves the linear fit. The regression plots below compare the raw and log-transformed scales side by side.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/fig2_rd_vs_patents_regplot.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Regression plots of R&amp;D spending vs.&nbsp;patent output. Left: raw scale (Pearson r = 0.355). Right: log-transformed patent count (Pearson r = 0.791). The log scale linearises the relationship and confirms an exponential pattern.</figcaption>
+</figure>
+</div>
+<p><span class="math display">\[r_{\log} = 0.791, \quad p &lt; 0.001\]</span></p>
+<p>A given increase in R&amp;D spending (% of GDP) is associated with a <strong>multiplicative</strong> increase in patent output rather than an additive one.</p>
+<p><strong>OLS regression</strong> with log(patents) as the outcome and both <code>rd_gdp</code> and log(population) as predictors yielded the following coefficient estimates:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Predictor</th>
+<th>Coefficient</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intercept</td>
+<td>−7.76</td>
+</tr>
+<tr class="even">
+<td>R&amp;D spending (% GDP)</td>
+<td>+2.00</td>
+</tr>
+<tr class="odd">
+<td>log(Population)</td>
+<td>+0.61</td>
+</tr>
+</tbody>
+</table>
+<p>Holding population constant, each additional percentage point of GDP directed toward R&amp;D is associated with a doubling of expected patent output on the log scale. The residual plot below confirms there is no systematic bias in the fitted values.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/fig3_ols_residuals.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>Residuals vs.&nbsp;fitted values from the OLS model (outcome: log patent count; predictors: R&amp;D % GDP and log population). Residuals are centred near zero (mean = −0.0000, SD = 1.30) with no obvious structure, indicating a reasonable model fit.</figcaption>
+</figure>
+</div>
+<p><strong>Summary:</strong> R&amp;D spending is a strong positive predictor of patent output. The relationship is monotonic and non-linear — consistent with an exponential scaling pattern — and is highly statistically significant across all tested specifications.</p>
+<hr>
+</section>
+<section id="does-patent-output-correlate-with-gdp-growth" class="level3">
+<h3 class="anchored" data-anchor-id="does-patent-output-correlate-with-gdp-growth">2. Does patent output correlate with GDP growth?</h3>
+<p>The raw-scale and log-scale scatter plots are shown side by side below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/fig4_patents_vs_gdp_raw_log.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>GDP growth (% of GDP) as a function of patent count. Left: raw patent count (Pearson r = -0.055, Spearman ρ = −0.248). Right: log-transformed patent count (Pearson r = −0.162, Spearman ρ = −0.248). The data likely follows a non-linear or skewed downward trend, where the rank-order relationship is stronger than the direct linear association.</figcaption>
+</figure>
+</div>
+<p>The near-zero Pearson correlation (r=−0.055) confirms the absence of a linear relationship, while the Spearman correlation (ρ=−0.248,p&lt;0.001) reveals a persistent, non-linear downward trend.By utilizing ranks, the Spearman coefficient captures a directional association that the Pearson metric fails to detect due to the data’s non-linear structure.</p>
+<p>After log-transforming patent counts, both measures align:</p>
+<p><span class="math display">\[r_{\log} = -0.162, \quad \rho_{\log} = -0.248, \quad p &lt; 0.001 \text{ (both)}\]</span></p>
+<p>Countries with higher patent output do not systematically experience higher GDP growth. Two hypotheses were considered and tested in the lag analysis that follows.</p>
+<hr>
+</section>
+<section id="is-there-a-lag-effect" class="level3">
+<h3 class="anchored" data-anchor-id="is-there-a-lag-effect">3. Is there a lag effect?</h3>
+<p>Given that the economic payoff from research and innovation would realistically take years to materialise, a multi-year lag analysis was conducted for both directions of the relationship.</p>
+<p><strong>R&amp;D spending → Patent output (lags 0–5 years):</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lag (years)</th>
+<th>Spearman ρ</th>
+<th>p-value</th>
+<th>n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.808</td>
+<td>&lt; 0.001</td>
+<td>1,801</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.806</td>
+<td>&lt; 0.001</td>
+<td>1,672</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.806</td>
+<td>&lt; 0.001</td>
+<td>1,556</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.806</td>
+<td>&lt; 0.001</td>
+<td>1,449</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0.805</td>
+<td>&lt; 0.001</td>
+<td>1,347</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>0.804</td>
+<td>&lt; 0.001</td>
+<td>1,250</td>
+</tr>
+</tbody>
+</table>
+<p>The R&amp;D → patent association is virtually time-invariant across all lag lengths, suggesting that patent output responds to R&amp;D investment without a detectable multi-year delay at annual resolution.</p>
+<p><strong>Patent output → GDP growth (lags 1–12 years):</strong></p>
+<p>The Spearman correlation profile below shows how the patent → GDP growth association evolves across lag lengths.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/fig5_lag_spearman_profile.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Spearman ρ between lagged log(patent count) and GDP growth, for lags 1 through 12 years. The correlation remains negative throughout, weakening gradually from ρ = −0.247 at lag 1 to ρ ≈ −0.081 at lag 9 before levelling off. No positive reversal is observed at any lag length tested.</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lag (years)</th>
+<th>Spearman ρ</th>
+<th>p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>−0.247</td>
+<td>&lt; 0.001</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>−0.228</td>
+<td>&lt; 0.001</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>−0.211</td>
+<td>&lt; 0.001</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>−0.176</td>
+<td>&lt; 0.001</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>−0.159</td>
+<td>&lt; 0.001</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>−0.128</td>
+<td>&lt; 0.001</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>−0.105</td>
+<td>0.001</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>−0.081</td>
+<td>0.016</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>−0.092</td>
+<td>0.009</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>−0.091</td>
+<td>0.015</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>−0.093</td>
+<td>0.018</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Testing Hypothesis 1 — Reverse causality:</strong> Lagging GDP growth by one year and correlating with current patent output yielded ρ = −0.259 (p &lt; 0.001) — also negative. This rules out the possibility that GDP growth is itself driving patent activity.</p>
+<p><strong>Testing Hypothesis 2 — Income-group averaging:</strong> Countries were split into “High R&amp;D” (rd_gdp ≥ 1.0%) and “Low R&amp;D” groups. Both sub-groups showed negative correlations (ρ = −0.130 and −0.163 respectively), ruling out the averaging-artefact explanation.</p>
+<p><strong>Summary:</strong> The most plausible interpretation is a <strong>short-term resource cost</strong>: patenting is expensive and R&amp;D-intensive, generating a drag on measured GDP growth in the near term. Any long-term growth payoff, if it exists, appears too diffuse or conditional to emerge in a simple bivariate correlation at annual resolution.</p>
+<hr>
+</section>
+</section>
+<section id="secondary-questions" class="level2">
+<h2 class="anchored" data-anchor-id="secondary-questions">Secondary Questions</h2>
+<section id="which-countries-convert-rd-investment-into-patents-most-efficiently" class="level3">
+<h3 class="anchored" data-anchor-id="which-countries-convert-rd-investment-into-patents-most-efficiently">4. Which countries convert R&amp;D investment into patents most efficiently?</h3>
+<p><strong>Efficiency metric:</strong></p>
+<p><span class="math display">\[E_1 = \frac{\text{patent\_count}}{\text{rd\_gdp} \times \text{inventor\_count}} \times 10^6\]</span></p>
+<p>This formulation normalises patent output by both the scale of R&amp;D investment and the size of the inventor workforce, providing a measure of research productivity per unit of combined resource input. Minimum thresholds were applied to avoid anomalous scores: at least 500 patents, 2,000 inventors, 1.0% R&amp;D/GDP, and 5 million population — reducing the dataset to <strong>324 observations across 20 countries</strong>.</p>
+<p><strong>Top 10 countries by mean R&amp;D → patent efficiency:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Country</th>
+<th>Mean E₁</th>
+<th>Total Patents</th>
+<th>Mean R&amp;D (% GDP)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Italy (ITA)</td>
+<td>600,573</td>
+<td>68,816</td>
+<td>1.24%</td>
+</tr>
+<tr class="even">
+<td>Spain (ESP)</td>
+<td>432,166</td>
+<td>12,205</td>
+<td>1.29%</td>
+</tr>
+<tr class="odd">
+<td>China (CHN)</td>
+<td>406,881</td>
+<td>244,159</td>
+<td>1.96%</td>
+</tr>
+<tr class="even">
+<td>United Kingdom (GBR)</td>
+<td>402,119</td>
+<td>156,642</td>
+<td>1.95%</td>
+</tr>
+<tr class="odd">
+<td>Australia (AUS)</td>
+<td>400,311</td>
+<td>17,759</td>
+<td>2.04%</td>
+</tr>
+<tr class="even">
+<td>Canada (CAN)</td>
+<td>399,072</td>
+<td>158,514</td>
+<td>1.84%</td>
+</tr>
+<tr class="odd">
+<td>Netherlands (NLD)</td>
+<td>376,873</td>
+<td>64,011</td>
+<td>1.95%</td>
+</tr>
+<tr class="even">
+<td>Singapore (SGP)</td>
+<td>365,001</td>
+<td>6,239</td>
+<td>1.94%</td>
+</tr>
+<tr class="odd">
+<td>France (FRA)</td>
+<td>303,343</td>
+<td>148,026</td>
+<td>2.17%</td>
+</tr>
+<tr class="even">
+<td>Belgium (BEL)</td>
+<td>276,552</td>
+<td>19,515</td>
+<td>2.85%</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="which-countries-convert-patent-output-into-gdp-growth-most-efficiently" class="level3">
+<h3 class="anchored" data-anchor-id="which-countries-convert-patent-output-into-gdp-growth-most-efficiently">5. Which countries convert patent output into GDP growth most efficiently?</h3>
+<p><strong>Efficiency metric:</strong></p>
+<p><span class="math display">\[E_2 = \frac{\text{gdp\_growth}}{\text{patent\_count} / \text{population}} \times 10^6\]</span></p>
+<p><strong>Top 10 countries by mean patent → GDP growth efficiency:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Country</th>
+<th>Mean E₂</th>
+<th>Total Patents</th>
+<th>Mean R&amp;D (% GDP)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>China (CHN)</td>
+<td>2.01 × 10¹²</td>
+<td>244,159</td>
+<td>1.96%</td>
+</tr>
+<tr class="even">
+<td>Spain (ESP)</td>
+<td>7.45 × 10¹⁰</td>
+<td>12,205</td>
+<td>1.29%</td>
+</tr>
+<tr class="odd">
+<td>South Korea (KOR)</td>
+<td>2.68 × 10¹⁰</td>
+<td>319,187</td>
+<td>3.51%</td>
+</tr>
+<tr class="even">
+<td>Australia (AUS)</td>
+<td>2.15 × 10¹⁰</td>
+<td>17,759</td>
+<td>2.04%</td>
+</tr>
+<tr class="odd">
+<td>United Kingdom (GBR)</td>
+<td>1.65 × 10¹⁰</td>
+<td>156,642</td>
+<td>1.95%</td>
+</tr>
+<tr class="even">
+<td>France (FRA)</td>
+<td>1.60 × 10¹⁰</td>
+<td>148,026</td>
+<td>2.17%</td>
+</tr>
+<tr class="odd">
+<td>Canada (CAN)</td>
+<td>1.20 × 10¹⁰</td>
+<td>158,514</td>
+<td>1.84%</td>
+</tr>
+<tr class="even">
+<td>Netherlands (NLD)</td>
+<td>1.16 × 10¹⁰</td>
+<td>64,011</td>
+<td>1.95%</td>
+</tr>
+<tr class="odd">
+<td>Israel (ISR)</td>
+<td>1.15 × 10¹⁰</td>
+<td>63,317</td>
+<td>4.56%</td>
+</tr>
+<tr class="even">
+<td>Italy (ITA)</td>
+<td>1.11 × 10¹⁰</td>
+<td>68,816</td>
+<td>1.24%</td>
+</tr>
+</tbody>
+</table>
+<p>China’s dominant position in E₂ reflects its high GDP growth rates during the study period combined with its large population, which keeps the per-capita patent denominator low even as absolute patent volume grows.</p>
+<hr>
+</section>
+<section id="is-innovation-productivity-saturating-in-high-income-countries" class="level3">
+<h3 class="anchored" data-anchor-id="is-innovation-productivity-saturating-in-high-income-countries">6. Is innovation productivity saturating in high-income countries?</h3>
+<div class="callout callout-style-simple callout-important no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Data workaround applied here.</strong> Because GDP per capita was not extracted in the original pipeline, countries could not be classified by income level from the data alone. Income group labels were sourced externally from World Bank and IMF reference lists and applied as a static lookup. This classification has not been independently verified within the scope of this study.</p>
+</div>
+</div>
+</div>
+<p>The chart below tracks mean E₁ (R&amp;D → patents) and E₂ (patents → GDP growth) over time for High Income and Emerging economy groups.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/fig6_efficiency_over_time.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Mean R&amp;D → patent efficiency (E₁, left) and patent → GDP growth efficiency (E₂, right) by year and income group (2000–2022). Both groups show declining E₁ over time. E₂ declines significantly for Emerging economies but shows no statistically significant trend for High Income countries.</figcaption>
+</figure>
+</div>
+<p>Linear regression of mean E₁ over time by group:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Group</th>
+<th>Slope (E₁ per year)</th>
+<th>R²</th>
+<th>p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>High Income</td>
+<td>−4,374</td>
+<td>0.907</td>
+<td>&lt; 0.001</td>
+</tr>
+<tr class="even">
+<td>Emerging</td>
+<td>−20,644</td>
+<td>0.777</td>
+<td>&lt; 0.001</td>
+</tr>
+</tbody>
+</table>
+<p>Both groups show a statistically significant <strong>decline</strong> in R&amp;D → patent efficiency over time, consistent with a diminishing returns hypothesis. The steeper decline in emerging economies may reflect rapid scaling of R&amp;D programmes outpacing the growth of productive inventor capacity.</p>
+<p>The scatter below shows where each group sits in R&amp;D spend vs.&nbsp;patent output space, revealing the structural differences in innovation volume between the two groups.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/fig7_rd_vs_patents_by_group.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>R&amp;D spending (% of GDP) vs.&nbsp;patent count, coloured by income group. High Income countries span a wider range of R&amp;D intensities and consistently produce higher absolute patent volumes. Emerging economies are concentrated at lower R&amp;D spending levels with greater variance in patent output.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="are-emerging-economies-more-innovation-efficient-per-dollar-spent" class="level3">
+<h3 class="anchored" data-anchor-id="are-emerging-economies-more-innovation-efficient-per-dollar-spent">7. Are emerging economies more innovation-efficient per dollar spent?</h3>
+<p>To normalise E₁ by R&amp;D spending intensity, a per-unit efficiency metric was computed:</p>
+<p><span class="math display">\[E_{1,\text{norm}} = \frac{E_1}{\text{rd\_gdp}}\]</span></p>
+<p><strong>Mean normalised efficiency by group:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Group</th>
+<th>Mean E₁ / R&amp;D unit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>High Income</td>
+<td>155,885</td>
+</tr>
+<tr class="even">
+<td>Emerging</td>
+<td>226,521</td>
+</tr>
+</tbody>
+</table>
+<p>Emerging economies produce approximately <strong>45% more patents per unit of R&amp;D investment</strong> than high-income countries on average. The box plots below compare distributions of both the normalised and raw efficiency metrics across groups.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/fig8_efficiency_per_rd_boxplot.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Left: Distribution of E₁ normalised by R&amp;D spending (E₁ / rd_gdp) for High Income vs.&nbsp;Emerging economies. Emerging economies show a higher median and wider spread. Right: Raw E₁ for reference. The higher per-dollar efficiency of emerging economies is consistent across the distribution, not driven by outliers alone.</figcaption>
+</figure>
+</div>
+<p>This is consistent with theoretical expectations: high-income economies direct R&amp;D toward complex, incremental frontier innovation where the marginal cost per patent is higher, while emerging economies may capture more available patent space through technology adoption, adaptation, and applied engineering at lower marginal cost per unit of investment.</p>
+<hr>
+</section>
+<section id="does-patent-volume-plateau-beyond-certain-rd-spending-thresholds" class="level3">
+<h3 class="anchored" data-anchor-id="does-patent-volume-plateau-beyond-certain-rd-spending-thresholds">8. Does patent volume plateau beyond certain R&amp;D spending thresholds?</h3>
+<p>R&amp;D spending was binned into deciles and mean patent output was calculated within each bin, separately for High Income and Emerging countries, to test for a saturation effect.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/fig9_plateau_detection.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Mean patent count by R&amp;D spending decile (bin midpoint), for High Income and Emerging economy groups. Both curves follow a broadly concave trajectory — rising steeply at lower R&amp;D spending levels and flattening at higher spending — consistent with diminishing marginal returns to R&amp;D investment.</figcaption>
+</figure>
+</div>
+<p>A logarithmic curve was then fitted directly to High Income country observations to quantify the saturation shape:</p>
+<p><span class="math display">\[\hat{y} = a \cdot \ln(x) + b\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/fig10_log_curve_fit_high_income.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>Logarithmic curve fit (crimson line) to High Income country observations of R&amp;D spending vs.&nbsp;patent count. The log model captures the concave shape of the relationship: large patent gains at lower R&amp;D spending levels, with returns flattening progressively as spending rises toward and beyond ~3% of GDP.</figcaption>
+</figure>
+</div>
+<p>The log curve fit confirms a <strong>saturation pattern</strong>: early increases in R&amp;D spending yield proportionally large gains in patent output, but the marginal return diminishes as spending rises. The effect is most clearly demonstrated in High Income countries, which occupy a wider R&amp;D spending range where the flattening of the curve is directly observable.</p>
+<hr>
+</section>
+</section>
+<section id="concluding-remarks" class="level2">
+<h2 class="anchored" data-anchor-id="concluding-remarks">Concluding Remarks</h2>
+<p>Across the eight analyses, the most robust finding is the <strong>strong positive association between R&amp;D spending and patent output</strong> (Spearman ρ ≈ 0.81), which is stable across lag windows, statistically highly significant, and consistent with a log-linear functional form. This relationship holds across income groups and is not an artifact of country size or population.</p>
+<p>The <strong>patent → GDP growth</strong> relationship is weaker, consistently negative in bivariate tests, and does not resolve to a positive signal at any lag length tested up to twelve years. This most likely reflects the limitations of a bivariate framework that cannot account for institutional quality, human capital, sector composition, and other confounders that would be necessary for a credible causal claim.</p>
+<p>The secondary findings — declining innovation efficiency over time, higher per-dollar efficiency in emerging economies, and logarithmic saturation in the R&amp;D → patent curve — are coherent and mutually reinforcing. They suggest that the global innovation system is characterised by diminishing marginal returns, and that the productivity advantage of emerging economies, while real, is narrowing.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
